@@ -1,0 +1,15 @@
+<div class="doses d-flex justify-content-center">
+    <span>
+        <h1>Add your ingredients</h1>
+        <%= simple_form_for(@ingredient) do |f| %>
+        <div class="form-inputs">
+            <%= f.input :name %>
+            <%= f.input :unit %>
+            <%= f.input :price_per_unit %>
+        </div>
+        <div class="form-actions">
+            <%= f.submit :submit, class:"btn btn-danger" %>
+        </div>
+        <% end %>
+    </span>
+</div>
