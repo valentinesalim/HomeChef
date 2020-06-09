@@ -18,6 +18,6 @@ class User < ApplicationRecord
   # uncomment following after cloudinary implementation
   # has_one_attached :photo
 
-  validates :first_name, :last_name, :profile_photo, :address, presence: true
+  # validates :first_name, :last_name, :profile_photo, :address, presence: true
 
 end
