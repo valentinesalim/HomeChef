@@ -5,4 +5,6 @@ class Comment < ApplicationRecord
   belongs_to :parent_comment, class_name: "Comment", foreign_key: "thread_id", optional: true
   has_many :replies, class_name: "Comment", foreign_key: "thread_id"
 
+  validates :content, presence: true, length: {minimum: 10}
+
 end
