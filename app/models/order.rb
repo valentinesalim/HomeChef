@@ -5,5 +5,4 @@ class Order < ApplicationRecord
   has_many :ingredients, through: :order_ingredients
 
   validates :delivery_date, :delivery_location, presence: true
-  validates :confirmed, inclusion: [true, false], default: false
 end
