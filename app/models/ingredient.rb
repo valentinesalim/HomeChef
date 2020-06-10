@@ -5,5 +5,5 @@ class Ingredient < ApplicationRecord
   validates :name, :unit, :price_per_unit, presence: true
 
   # set default image & uncomment the following line after cloudinary implementation
-  # has_one_attached :photo
+  has_one_attached :photo
 end

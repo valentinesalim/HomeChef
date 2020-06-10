@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # PENDING TASKS
-# cloudnary / photo setup
+# cloudinary / photo setup
 # video setup and attachment implementation below
 
 

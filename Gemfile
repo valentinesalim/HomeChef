@@ -64,8 +64,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ABOVE IS DEFAULT PROJECT SETUP -- BELOW ADDED BY HOME_CHEF TEAM
 # ------------------------------
-# Added by Matt on day 1:
+# Added by Matt on Monday, 8 June:
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
 # ------------------------------
+# Added by Matt on Wednesday, 10 June:
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'pg_search', '~> 2.3.0'

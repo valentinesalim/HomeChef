@@ -12,7 +12,7 @@ class Recipe < ApplicationRecord
   has_many :ratings, through: :done_recipes
 
   #uncomment the following after cloudinary implementation
-  #has_one_attached :photo
+  has_one_attached :photo
 
   # check how to let users upload video: youtube or cloudinary?
   #has_one_attached :video
