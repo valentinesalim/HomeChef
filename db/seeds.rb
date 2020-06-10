@@ -26,7 +26,7 @@ end
 puts "ingredients created"
 
 # 1 WEEKLY INGREDIENT LIST WITH DATE TODAY
-wil = WeeklyIngredientList.create!(date: Date.today, published: true)
+wil = WeeklyIngredientList.create!(date: Date.today.beginning_of_week, published: true)
 Ingredient.all.each do |ingredient|
   WeeklyIngredient.create(ingredient: ingredient, weekly_ingredient_list: wil)
 end
