@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
 
   def set_user
     @user = current_user
+  end
 
   def set_comment
     @comment = Comment.find(params[:id])
