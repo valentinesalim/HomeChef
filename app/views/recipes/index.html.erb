@@ -1,1 +1,12 @@
-xx
+
+<% @recipes.each do |recipe| %>
+    <img src="https://m.media-amazon.com/images/I/51Sn8PEXwcL.jpg" />
+        <%# <%= cl_image_tag book.photo.key, class:"image-fit ml-5 pl-5" if book.photo.attached?%>
+
+    <div style="text-align: center" class="card-product-infos ml-3">
+        <h2><%= recipe.name %></h2>
+        <h3><%= recipe.category %></h3>
+        <a><%= link_to "More details", recipe_path(recipe), class: "btn btn-primary" %></a>
+        <p></p>
+    </div>
+<% end %>
