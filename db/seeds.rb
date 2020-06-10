@@ -6,10 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# PENDING TASKS
-# cloudinary / photo setup
-# video setup and attachment implementation below
-
 
 puts "now creating ingredients and one weekly_ingredients_list"
 
@@ -17,8 +13,11 @@ puts "now creating ingredients and one weekly_ingredients_list"
 5.times do
   i = Ingredient.new(name: Faker::Food.ingredient,
                       unit: Faker::Food.metric_measurement,
-                      price_per_unit: rand(1..2)
+                      price_per_unit: rand(1..2),
+                      # image: "https://source.unsplash.com/featured/?ingredient"
                       )
+
+
   file = URI.open('https://source.unsplash.com/featured/?ingredient')
   i.photo.attach(io: file, filename: 'ingredient.png', content_type: 'image/png')
   i.save!
@@ -61,10 +60,9 @@ test_user = User.create!(email: "tester@gmail.com", first_name: "Test", last_nam
                   )
     file = URI.open('https://source.unsplash.com/featured/?recipe')
     r.photo.attach(io: file, filename: 'recipe.png', content_type: 'image/png')
-
     r.save!
-    puts "created recipe(s) connected to last created user"
   end
+  puts "created recipe(s) connected to last created user"
 end
 
 puts "Finished creating all ingredients, one weekly_ingredient_list, and all users that each have recipes"

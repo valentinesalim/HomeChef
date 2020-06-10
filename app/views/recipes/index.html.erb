@@ -1,7 +1,9 @@
-xx
+<h1>ALL RECIPES</h1>
+
 <% @recipes.each do |recipe| %>
 
     <div style="text-align: center" class="card-product-infos ml-3">
+        <%= cl_image_tag recipe.photo.key, height: 300, width: 400, crop: :fill if recipe.photo.attached?%>
         <h2><%= recipe.name %></h2>
         <h3><%= recipe.category %></h3>
         <a><%= link_to "More details", recipe_path(recipe), class: "btn btn-primary" %></a>

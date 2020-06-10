@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
   def index
 
     @recipes = policy_scope(Recipe)
-    @recipes = Recipe.all
+    @recipes = Recipe.all.order(name: :asc)
     # IN CASE WE IMPLEMENT A SEARCH FEATURE:
     # if params[:query].present?
     #   @books = Recipe.search_or_filter(params[:query]).order(name: :asc)
@@ -29,6 +29,8 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
     @weekly_ingredient_list = WeeklyIngredientList.find_by(date: Date.today.beginning_of_week)
     @recipe.weekly_ingredient_list = @weekly_ingredient_list
+    youtube_id = YoutubeID.from(@recipe.video)
+    @recipe.video = "http://www.youtube.com/embed/#{youtube_id}"
     if @recipe.save
       redirect_to @recipe
     else
@@ -62,7 +64,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :category, :description, :serving_time, :level, :total_price, :photo)
+    params.require(:recipe).permit(:name, :category, :description, :serving_time, :level, :total_price, :photo, :video)
   end
 
   def set_recipe

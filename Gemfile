@@ -72,3 +72,4 @@ gem 'pundit'
 # Added by Matt on Wednesday, 10 June:
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'pg_search', '~> 2.3.0'
+gem 'youtube_id'
