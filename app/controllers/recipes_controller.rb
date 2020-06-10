@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
 
   def index
 
-    # @recipes = policy_scope(Recipe)
+    @recipes = policy_scope(Recipe)
     @recipes = Recipe.all
     # IN CASE WE IMPLEMENT A SEARCH FEATURE:
     # if params[:query].present?
@@ -20,13 +20,13 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    # authorize @recipe
+    authorize @recipe
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-    # authorize @recipe
-    # @recipe.user = current_user
+    authorize @recipe
+    @recipe.user = current_user
     if @recipe.save
       redirect_to recipes_path(@recipe)
     else
@@ -36,12 +36,16 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    authorize @recipe
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
   end
 
   def update
+    @recipe= Recipe.find(params[:id])
+    authorize @recipe
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: 'Recipe was successfully updated.'
     else
@@ -51,6 +55,7 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find(params[:id])
+    authorize @recipe
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
   end
@@ -58,11 +63,11 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :category, :description, :serving_time, :level, :total_price)
+    params.require(:recipe).permit(:name, :category, :description, :serving_time, :level, :total_price, :photo)
   end
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
-    # authorize @recipe
+    authorize @recipe
   end
 end
