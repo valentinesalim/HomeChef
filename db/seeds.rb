@@ -14,7 +14,7 @@
 puts "now creating ingredients and one weekly_ingredients_list"
 
 # INGREDIENTS
-20.times do
+5.times do
   i = Ingredient.new(name: Faker::Food.ingredient,
                       unit: Faker::Food.metric_measurement,
                       price_per_unit: rand(1..2)
@@ -26,17 +26,18 @@ end
 puts "ingredients created"
 
 # 1 WEEKLY INGREDIENT LIST WITH DATE TODAY
-wil = WeeklyIngredientList.new!(date: Date.today)
+wil = WeeklyIngredientList.new(date: Date.today)
 id = 1
-20.times do
+5.times do
   wil.ingredient = Ingredient.find(id)
   id += 1
+  wil.save!
 end
 puts "weekly ingredient list created ->"
 
 puts "-> now creating new users incl. their own recipes"
 # USER
-test_user = User.create(email: "tester@gmail.com", username: "Tester", first_name: "Test", last_name: "User", password: "123456", address: "123 Le Wagon Avenue, 410 Shenzhen, CHINA", profile_photo: Faker::Avatar.image)
+test_user = User.create!(email: "tester@gmail.com", username: "Tester", first_name: "Test", last_name: "User", password: "123456", address: "123 Le Wagon Avenue, 410 Shenzhen, CHINA", profile_photo: Faker::Avatar.image)
 
 5.times do
   u = User.create!(email: Faker::Internet.email,
@@ -60,11 +61,12 @@ test_user = User.create(email: "tester@gmail.com", username: "Tester", first_nam
                     total_price: rand(7..9),
                     weekly_ingredients_list_id: wil.id,
                     user_id: u.id
-
                   )
     file = URI.open('https://source.unsplash.com/featured/?recipe')
     r.photo.attach(io: file, filename: 'recipe.png', content_type: 'image/png')
-    # attach a video
+
+    # embed a video url from YouTube
+
     r.save!
     puts "created recipe(s) connected to last created user"
   end
