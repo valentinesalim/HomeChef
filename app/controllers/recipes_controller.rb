@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
     authorize @recipe
     @recipe.user = current_user
     if @recipe.save
-      redirect_to recipes_path(@recipe)
+      redirect_to @recipe
     else
       render 'new'
     end
