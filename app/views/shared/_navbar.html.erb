@@ -22,9 +22,9 @@
         <li class="nav-item">
           <%= render 'shared/search' %>
         </li>
-        
+
       <% if user_signed_in? %>
-        
+
         <li class="nav-item active" style="margin-right: 40px; margin-left: 10px;">
           <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-light"%>
         </li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_043838) do
+ActiveRecord::Schema.define(version: 2020_06_10_113258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 2020_06_10_043838) do
     t.string "name"
     t.string "unit"
     t.integer "price_per_unit"
-    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -120,7 +119,6 @@ ActiveRecord::Schema.define(version: 2020_06_10_043838) do
     t.boolean "published"
     t.bigint "user_id", null: false
     t.bigint "weekly_ingredient_list_id", null: false
-    t.string "photo"
     t.string "video"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
