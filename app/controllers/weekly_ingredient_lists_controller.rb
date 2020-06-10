@@ -2,31 +2,30 @@ class WeeklyIngredientListsController < ApplicationController
     def new
         @weeklyingredientlist = WeeklyIngredientList.new
         @ingredient = Ingredient.find(params[:ingredient_id])
-        end
+    end
     
-        def create
+    def create
         @weeklyingredientlist = WeeklyIngredientList.new(weeklyingredient_params)
         @ingredient = Ingredient.find(params[:ingredient_id])
         @weeklyingredientlist.ingredient = @ingredient
     
-        if @wweeklyingredientlist.save
+        if @weeklyingredientlist.save
             redirect_to ingredient_path(@ingredient)
         else
             render :new
         end
-        end
+    end
     
-        def destroy
+    def destroy
         @weeklyingredientlist = WeeklyIngredientList.find(params[:id])
         @weeklyingredientlist.destroy
         redirect_to root_path(@ingredient)
-        end
+    end
     
         private
     
-        def weeklyingredientlist_params
+    def weeklyingredientlist_params
         params.require(:weeklyingredientlist).permit(:date, :published)
-        end
     end
       
 end
