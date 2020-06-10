@@ -9,6 +9,7 @@
         <%= f.input :description %>
         <%= f.input :serving_time %>
         <%= f.input :level, collection: Recipe::LEVELS%>
+        <%= f.collection_check_boxes :weekly_ingredient_list, Ingredient.all, :id, :name   %>
         <%= f.input :total_price %>
         <%= f.input :photo, as: :file %>
     </div>
