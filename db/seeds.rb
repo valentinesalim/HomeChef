@@ -56,12 +56,11 @@ test_user = User.create!(email: "tester@gmail.com", first_name: "Test", last_nam
                     published: true,
                     total_price: rand(7..9),
                     weekly_ingredient_list_id: wil.id,
-                    user_id: u.id
+                    user_id: u.id,
+                    video: "https://www.youtube.com/embed/Z_GcsR7Q99s"
                   )
     file = URI.open('https://source.unsplash.com/featured/?recipe')
     r.photo.attach(io: file, filename: 'recipe.png', content_type: 'image/png')
-
-    # embed a video url from YouTube
 
     r.save!
     puts "created recipe(s) connected to last created user"

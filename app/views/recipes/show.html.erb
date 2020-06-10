@@ -1,0 +1,16 @@
+
+<h3><%= @recipe.name %></h3>
+<p><strong>Category: </strong><%= @recipe.category %></p>
+
+<!-- EMMBEDED VIDEO - WORK IN PROGRESS -->
+<iframe id="ytplayer" type="text/html" width="720" height="405"
+src="<%= @recipe.video %>"
+frameborder="0" allowfullscreen></iframe>
+<!-- -------- -->
+<p><strong>Description: </strong><%= @recipe.description %></p>
+<p><strong>Level: </strong><%= @recipe.level %></p>
+<p><strong>Serving Time: </strong><%= @recipe.serving_time %></p>
+
+
+<!-- https://youtu.be/Z_GcsR7Q99s
+https://www.youtube.com/watch?v=Z_GcsR7Q99s -->
