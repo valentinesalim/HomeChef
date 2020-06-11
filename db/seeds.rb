@@ -25,7 +25,7 @@ end
 puts "ingredients created"
 
 # 1 WEEKLY INGREDIENT LIST WITH DATE TODAY
-wil = WeeklyIngredientList.create!(date: Date.today.beginning_of_week, published: true)
+wil = WeeklyIngredientList.create!(date: Date.today.beginning_of_week, published: true, price_per_portion: 35, menu_name: "Extravaganza")
 Ingredient.all.each do |ingredient|
   WeeklyIngredient.create(ingredient: ingredient, weekly_ingredient_list: wil)
 end
@@ -53,7 +53,6 @@ test_user = User.create!(email: "tester@gmail.com", first_name: "Test", last_nam
                     serving_time: rand(10..90),
                     level: Recipe::LEVELS.sample,
                     published: true,
-                    total_price: rand(7..9),
                     weekly_ingredient_list_id: wil.id,
                     user_id: u.id,
                     video: "https://www.youtube.com/embed/Z_GcsR7Q99s"
