@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :ingredients
 
   resources :weekly_ingredient_lists
+  resources :users
 
 end

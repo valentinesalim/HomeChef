@@ -22,7 +22,7 @@ class WeeklyIngredientListsController < ApplicationController
         redirect_to root_path(@ingredient)
     end
     
-        private
+    private
     
     def weeklyingredientlist_params
         params.require(:weeklyingredientlist).permit(:date, :published)

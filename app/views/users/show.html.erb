@@ -1,0 +1,21 @@
+
+<div class=" content container-profile col-sm-12" >
+  <div class="column col-sm-4">
+    <h1><strong>Profile</strong></h1>
+    <div style="border-width: 0.5px; border-style: solid; margin-bottom: 50px;"></div>
+    <img height="200", width="200" src="<%= @user.photo.attached? ? (cl_image_path @user.photo.key) : (image_path "defaultprofile.png")%>" >
+    <%= simple_form_for(@user) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :photo, as: :file %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, class:"btn btn-primary" %>
+      </div>
+    <% end %>
+
+
+    <p><strong>Name: </strong><%= @user.first_name + ' ' + @user.last_name  %></p>
+    <p><strong>Email: </strong><%= @user.email %></p>
+    <p><strong>Address </strong><%= @user.address %></p>
+  </div>
+</div>
