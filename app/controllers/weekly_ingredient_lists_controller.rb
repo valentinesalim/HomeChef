@@ -1,36 +1,44 @@
 class WeeklyIngredientListsController < ApplicationController
-  def new
-    @weeklyingredientlist = WeeklyIngredientList.new
-    @ingredient = Ingredient.find(params[:ingredient_id])
-  end
 
-  def create
-    @weeklyingredientlist = WeeklyIngredientList.new(weeklyingredient_params)
-    @ingredient = Ingredient.find(params[:ingredient_id])
-    @weeklyingredientlist.ingredient = @ingredient
+  # NEW, CREATE, DESTROY ONLY NEEDED WHEN WE INTRODUCE ADMIN USER
+  # def new
+  #   @weekly_ingredient_list = WeeklyIngredientList.new
+  #   @ingredient = Ingredient.find(params[:ingredient_id])
+  # end
 
-    if @weeklyingredientlist.save
-      redirect_to ingredient_path(@ingredient)
-    else
-      render :new
-    end
-  end
+  # def create
+  #   @weekly_ingredient_list = WeeklyIngredientList.new(weekly_ingredient_list_params)
+  #   @ingredient = Ingredient.find(params[:ingredient_id])
+  #   @weekly_ingredient_list.ingredient = @ingredient
 
-  def destroy
-    @weeklyingredientlist = WeeklyIngredientList.find(params[:id])
-    @weeklyingredientlist.destroy
-    redirect_to root_path(@ingredient)
-  end
+  #   if @weekly_ingredient_list.save
+  #     redirect_to ingredient_path(@ingredient)
+  #   else
+  #     render :new
+  #   end
+  # end
+
+  # def destroy
+  #   @weekly_ingredient_list = WeeklyIngredientList.find(params[:id])
+  #   @weekly_ingredient_list.destroy
+  #   redirect_to root_path(@ingredient)
+  # end
 
   def show
-    @weeklyingredientlist = WeeklyIngredientList.find(params[:id])
-    # make sure only this week's list is deisplayed
+    @ingredients = policy_scope(Ingredient)
+
+    @weekly_ingredient_list = WeeklyIngredientList.find(params[:id])
+    authorize @weekly_ingredient_list
+    @ingredients = Ingredient.all
+    @weekly_ingredients = WeeklyIngredient.all
+    # FOR DEMO PURPOSES WE WILL ONLY HAVE ONE LIST OF THAT WEEK
+    # FUTURE -> make sure only this week's list is displayed
   end
 
   private
 
-  def weeklyingredientlist_params
-    params.require(:weeklyingredientlist).permit(:date, :published, :price_per_portion, :menu_name)
+  def weekly_ingredient_list_params
+    params.require(:weekly_ingredient_list).permit(:date, :published, :price_per_portion, :menu_name, :weekly_ingredient_id, :ingredient_id)
   end
 
 end
