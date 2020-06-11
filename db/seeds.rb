@@ -13,8 +13,7 @@ puts "now creating ingredients and one weekly_ingredients_list"
 5.times do
   i = Ingredient.new(name: Faker::Food.ingredient,
                       unit: Faker::Food.metric_measurement,
-                      price_per_unit: rand(1..2),
-                      # image: "https://source.unsplash.com/featured/?ingredient"
+                      price_per_unit: rand(1..2)
                       )
 
 
@@ -25,9 +24,14 @@ end
 puts "ingredients created"
 
 # 1 WEEKLY INGREDIENT LIST WITH DATE TODAY
-wil = WeeklyIngredientList.create!(date: Date.today.beginning_of_week, published: true, price_per_portion: 35, menu_name: "Extravaganza")
+wil = WeeklyIngredientList.create!(date: Date.today.beginning_of_week,
+                                    published: true,
+                                    price_per_portion: 35,
+                                    menu_name: "Extravaganza")
 Ingredient.all.each do |ingredient|
-  WeeklyIngredient.create(ingredient: ingredient, weekly_ingredient_list: wil)
+  WeeklyIngredient.create(ingredient: ingredient,
+                          weekly_ingredient_list: wil,
+                          amount: 2)
 end
 puts "weekly ingredient list created ->"
 
