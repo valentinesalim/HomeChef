@@ -1,33 +1,17 @@
 
-
-<div class="content container-profile col-sm-12" style="padding:200px" >
-  <div class="column col-sm-6" style="margin-right: -300px; margin-left: 200px">
-    <img height="250", width="250" src="<%= cl_image_path @recipe.photo.key %>" >
-  </div>
-  <div class="column col-sm-6">
-    <div class="card-header test1" style="background-color:#383F51; color: white;"><strong>Ingredient confirmation</strong></div>
-      <ul class="test1 card-header">
-      <h4><strong><%= @order.book.title %></strong></h4>
-      <li> Author: <%= @recipe.book.author %></li>
-      <li> Delivery Location: <%= @rental.pickup_location %></li>
-      <!-- OPTIONAL NICE-TO-HAVE: Rental days and total fee calculation
-      -> add when this feature is implemented on rental submission form -->
-
-      <li >Rental Start Date: <%= @rental.pickup_date %></li>
-      <li >Return Date: <%= @rental.return_date %></li>
-
-      <li >Book owner: <%= @rental.book.owner.full_name %></li>
-      <li >Book owner email: <%= @rental.book.owner.email %></li>
-
-      <div class="alert alert-success">
-        Successfull Booking!
-        <p>Happy Reading!</p>
-      </div>
-      <%= link_to 'Back to all books', books_path, class:"btn btn-primary mt-3"%>
-      <%= link_to 'My profile', user_path(current_user.id), class:"btn btn-primary mt-3" %>
+<div class="column col-sm-6">
+  <% @ingredients.each do |ingredient| %>
+    <%= cl_image_tag ingredient.photo.key, height: 300, width: 400, crop: :fill if ingredient.photo.attached?%>
+    <h3><%= ingredient.name %></h3>
+    <!-- PENDING TASK -> access weekly_ingredient.amount correctly. below not working  -->
+    <p> <%#= weekly_ingredient.amount %> <%= ingredient.unit %></p>
+  <% end %>
+    <div class="alert alert-success">
+      Successfull Ordering!
     </div>
+    <%= link_to 'Back to all recipes', recipes_path, class:"btn btn-primary mt-3"%>
+    <%= link_to 'My profile', user_path(current_user.id), class:"btn btn-primary mt-3" %>
   </div>
-  
 </div>
 
 
