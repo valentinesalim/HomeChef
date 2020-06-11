@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_113258) do
+ActiveRecord::Schema.define(version: 2020_06_11_040054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,16 +71,6 @@ ActiveRecord::Schema.define(version: 2020_06_10_113258) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "order_ingredients", force: :cascade do |t|
-    t.bigint "order_id", null: false
-    t.bigint "ingredient_id", null: false
-    t.integer "amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ingredient_id"], name: "index_order_ingredients_on_ingredient_id"
-    t.index ["order_id"], name: "index_order_ingredients_on_order_id"
-  end
-
   create_table "orders", force: :cascade do |t|
     t.date "delivery_date"
     t.string "delivery_location"
@@ -88,7 +78,10 @@ ActiveRecord::Schema.define(version: 2020_06_10_113258) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount_portion"
+    t.bigint "weekly_ingredient_list_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["weekly_ingredient_list_id"], name: "index_orders_on_weekly_ingredient_list_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -98,16 +91,6 @@ ActiveRecord::Schema.define(version: 2020_06_10_113258) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["done_recipe_id"], name: "index_ratings_on_done_recipe_id"
-  end
-
-  create_table "recipe_ingredients", force: :cascade do |t|
-    t.bigint "recipe_id", null: false
-    t.bigint "ingredient_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "amount"
-    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
-    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -122,7 +105,6 @@ ActiveRecord::Schema.define(version: 2020_06_10_113258) do
     t.string "video"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "total_price"
     t.index ["user_id"], name: "index_recipes_on_user_id"
     t.index ["weekly_ingredient_list_id"], name: "index_recipes_on_weekly_ingredient_list_id"
   end
@@ -148,6 +130,8 @@ ActiveRecord::Schema.define(version: 2020_06_10_113258) do
     t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "price_per_portion"
+    t.string "menu_name"
   end
 
   create_table "weekly_ingredients", force: :cascade do |t|
@@ -155,6 +139,7 @@ ActiveRecord::Schema.define(version: 2020_06_10_113258) do
     t.bigint "weekly_ingredient_list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount"
     t.index ["ingredient_id"], name: "index_weekly_ingredients_on_ingredient_id"
     t.index ["weekly_ingredient_list_id"], name: "index_weekly_ingredients_on_weekly_ingredient_list_id"
   end
@@ -164,12 +149,9 @@ ActiveRecord::Schema.define(version: 2020_06_10_113258) do
   add_foreign_key "comments", "users"
   add_foreign_key "done_recipes", "recipes"
   add_foreign_key "done_recipes", "users"
-  add_foreign_key "order_ingredients", "ingredients"
-  add_foreign_key "order_ingredients", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "orders", "weekly_ingredient_lists"
   add_foreign_key "ratings", "done_recipes"
-  add_foreign_key "recipe_ingredients", "ingredients"
-  add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "recipes", "weekly_ingredient_lists"
   add_foreign_key "weekly_ingredients", "ingredients"
