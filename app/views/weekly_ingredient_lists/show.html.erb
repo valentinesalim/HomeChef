@@ -1,0 +1,36 @@
+<!-- BIG BANNER WITH PAGE INTRO -->
+<div class="banner-sml">
+  <dir class="container sub-banner">
+    <h1>This Week: <%= @weekly_ingredient_list.menu_name %></h1>
+    <p>Monday, June 15 - Sunday, June 21</p>
+    <!-- <p><%#= @weeklyingredientlist.date %> - <%#= @weeklyingredientlist.date + 6 %> </p> -->
+  </dir>
+</div>
+
+<!-- CONTAINER FOR WEEK'S INGREDIENTS DISPLAY & ORDER BUTTON -->
+<!-- PENDING TASK: DESIGN AND STYLE -->
+<div class="banner-2">
+    <% @ingredients.each do |ingredient| %>
+      <%= cl_image_tag ingredient.photo.key, height: 300, width: 400, crop: :fill if ingredient.photo.attached?%>
+      <h3><%= ingredient.name %></h3>
+      <!-- PENDING TASK -> access weekly_ingredient.amount correctly. below not working  -->
+      <p> <%#= weekly_ingredient.amount %> <%= ingredient.unit %></p>
+    <% end %>
+  <%= link_to 'Buy Ingredient Set', orders_path(weekly_ingredient_list_id: @weekly_ingredient_list.id), method: :post, class: "btn btn-color" %>
+</div>
+
+<!-- SMALL BANNER TO INTRODUCE NEXT SECTION -->
+<div class="banner-sml">
+  <dir class="container sub-banner">
+    <h1>See what our chefs have already made with these ingredients</h3>
+  </dir>
+</div>
+
+<!-- CONTAINER TO DISPLAY RECIPES MADE WITh THIS WEEKS INGREDIENTS -->
+<!-- PENDING TASK: GET RECIPES INSTEAD OF DEFAULT CARD -->
+<div class="container parent">
+  <% 6.times do  %>
+    <%= render "shared/card_recipe" %>
+    <% end  %>
+</div>
+
