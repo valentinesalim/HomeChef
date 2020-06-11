@@ -14,10 +14,8 @@ class User < ApplicationRecord
   has_many :followed_users, through: :followings, class_name: "User", foreign_key: "follower_id"
 
   has_many :orders, dependent: :destroy
-
-  # uncomment following after cloudinary implementation
-  # has_one_attached :photo
+  has_one_attached :photo
 
 
-  # validates :first_name, :last_name, :profile_photo, :address, presence: true
+  validates :first_name, :last_name, presence: true
 end

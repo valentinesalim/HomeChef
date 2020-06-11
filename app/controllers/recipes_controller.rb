@@ -40,6 +40,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @order = Order.new
     authorize @recipe
   end
 

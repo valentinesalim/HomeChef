@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   # POST "order"
   def create
-    @order = order.new(order_params)
+    @order = Order.new
     authorize @order
     @order.user = current_user
     @order.weekly_ingredient_list = @weeklyingredientlist

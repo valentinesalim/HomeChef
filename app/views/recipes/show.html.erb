@@ -1,15 +1,14 @@
-
-<h3><%= @recipe.name %></h3>
-<p><strong>Category: </strong><%= @recipe.category %></p>
-
-<!-- EMMBEDED VIDEO - WORK IN PROGRESS -->
 <iframe id="ytplayer" type="text/html" width="720" height="405"
 src="<%= @recipe.video %>"
 frameborder="0" allowfullscreen></iframe>
-<!-- -------- -->
+<h3><strong><%=@recipe.name %></strong></h3>
+<p><strong></strong><%= @recipe.category %></p>
+
 <p><strong>Description: </strong><%= @recipe.description %></p>
 <p><strong>Level: </strong><%= @recipe.level %></p>
 <p><strong>Serving Time: </strong><%= @recipe.serving_time %></p>
+<%= link_to 'Order Ingredients', orders_path(recipe_id: @recipe.id), method: :post %>
+
 
 
 
