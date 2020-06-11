@@ -11,16 +11,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="nav justify-content-center">
         <li class="nav-link active navbar-title ">
-          <%= link_to "Weekly Menu", "#", class: "font-primary" %>
+          <%= link_to "This Week", "#", class: "font-primary" %>
         </li>
         <li class="nav-link active navbar-title">
-          <%= link_to "How it works?", "#", class: "font-primary" %>
-        </li>
-        <li class="nav-link active navbar-title">
-          <%= link_to "Blog", "#", class: "font-primary" %>
-        </li>
-        <li class="nav-item">
-          <%= render 'shared/search' %>
+          <%= link_to "Recipes", "#", class: "font-primary" %>
         </li>
 
       <% if user_signed_in? %>
@@ -36,8 +30,11 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
+        <li class="nav-item nav-container " style="padding-left:34px; padding-right:64px;">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item nav-container " style="padding-right:89px;">
+          <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
         </li>
       <% end %>
     </ul>
