@@ -40,6 +40,10 @@ class WeeklyIngredientListsController < ApplicationController
     authorize @weekly_ingredient_list
     @ingredients = Ingredient.all
     @weekly_ingredients = WeeklyIngredient.all
+
+    # @recipe should not be used here, will remove later
+    @recipe = @weekly_ingredient_list.recipes.first
+
     # FOR DEMO PURPOSES WE WILL ONLY HAVE ONE LIST OF THAT WEEK
     # FUTURE -> make sure only this week's list is displayed
   end
