@@ -13,15 +13,21 @@
 <!-- PENDING TASK: Add amount to display -->
 
 <div class="banner-2">
-  <div class=" content container-profile col-sm-12" >
-      <% @weekly_ingredients.each do |wi| %>
-        <%= cl_image_tag wi.ingredient.photo.key, height: 100, width: 100, borderradius: 50, crop: :fill if wi.ingredient.photo.attached?%>
-        <h3><%= wi.ingredient.name %></h3>
+  <div class=" content container-profile col-sm-12 justify-content-center" >
+    <% @weekly_ingredients.each do |wi| %> 
+      <ul>
+        <%= cl_image_tag wi.ingredient.photo.key, height: 100, width: 100, radius: :max, crop: :fill if wi.ingredient.photo.attached?%>
+        <h5><%= wi.ingredient.name %></h5>
         <p> <%= wi.amount %> - <%= wi.ingredient.unit %></p>
-      <% end %>
+      </ul>
+    <% end %>
+    <p>
+      <br>
+      <%= link_to 'Buy Ingredient Set', new_order_path(recipe_id: @recipe.id), class: "btn btn-color"%>
+    </p>
   </div>
-
-  <%= link_to 'Buy Ingredient Set', new_order_path(recipe_id: @recipe.id), class: "btn btn-color" %>
+  
+  
 
 
 </div>
