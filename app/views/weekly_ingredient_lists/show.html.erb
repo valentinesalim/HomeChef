@@ -1,7 +1,8 @@
 <!-- BIG BANNER WITH PAGE INTRO -->
+<!-- PENDING TASK: Access data for dates -->
 <div class="banner-sml">
   <dir class="container sub-banner">
-    <h1>This Week: <%= @weekly_ingredient_list.menu_name %></h1>
+    <h1>This Week's Menu: <%= @weekly_ingredient_list.menu_name %></h1>
     <p>Monday, June 15 - Sunday, June 21</p>
     <!-- <p><%#= @weeklyingredientlist.date %> - <%#= @weeklyingredientlist.date + 6 %> </p> -->
   </dir>
@@ -9,6 +10,7 @@
 
 <!-- CONTAINER FOR WEEK'S INGREDIENTS DISPLAY & ORDER BUTTON -->
 <!-- PENDING TASK: DESIGN AND STYLE -->
+<!-- PENDING TASK: Add amount to display -->
 <div class="banner-2">
     <% @ingredients.each do |ingredient| %>
       <%= cl_image_tag ingredient.photo.key, height: 300, width: 400, crop: :fill if ingredient.photo.attached?%>
