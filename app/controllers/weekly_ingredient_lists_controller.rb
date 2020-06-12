@@ -1,5 +1,14 @@
 class WeeklyIngredientListsController < ApplicationController
 
+  def index
+    @weekly_ingredient_lists = WeeklyIngredientList.all
+    authorize @weekly_ingredient_list
+    @ingredients = Ingredient.all
+    @weekly_ingredients = WeeklyIngredient.all
+    # FOR DEMO PURPOSES WE WILL ONLY HAVE ONE LIST OF THAT WEEK
+    # FUTURE -> make sure only this week's list is displayed
+  end
+
   # NEW, CREATE, DESTROY ONLY NEEDED WHEN WE INTRODUCE ADMIN USER
   # def new
   #   @weekly_ingredient_list = WeeklyIngredientList.new

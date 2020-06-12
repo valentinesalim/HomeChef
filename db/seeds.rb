@@ -37,16 +37,22 @@ puts "weekly ingredient list created ->"
 
 puts "-> now creating new users incl. their own recipes"
 # USER
-test_user = User.create!(email: "tester@gmail.com", first_name: "Test", last_name: "User", password: "123456", address: "123 Le Wagon Avenue, 410 Shenzhen, CHINA", profile_photo: Faker::Avatar.image)
+test_user = User.new(email: "tester@lewagon.com", first_name: "Chef", last_name: "User", password: "123456", address: "123 Le Wagon Avenue, 410 Shenzhen, CHINA")
+file = URI.open('https://images.unsplash.com/photo-1588442085302-4b4536373a03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')
+test_user.photo.attach(io: file, filename: 'avatar.png', content_type: 'image/png')
+test_user.save!
+puts "created new test user"
 
 5.times do
-  u = User.create!(email: Faker::Internet.email,
+  u = User.new(email: Faker::Internet.email,
                     password: "123456",
                     first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name,
-                    profile_photo: Faker::Avatar.image,
                     address: Faker::Address.full_address
                   )
+  file = URI.open('https://images.unsplash.com/photo-1588442085302-4b4536373a03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')
+  u.photo.attach(io: file, filename: 'avatar.png', content_type: 'image/png')
+  u.save!
   puts "created new user"
 
   #RECIPE CONNECTED TO USER ABOVE

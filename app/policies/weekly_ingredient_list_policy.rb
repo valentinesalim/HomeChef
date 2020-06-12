@@ -4,6 +4,10 @@ class WeeklyIngredientListPolicy < ApplicationPolicy
       scope.all
     end
   end
+  def index?
+    true
+  end
+
   def new?
     create?
   end
