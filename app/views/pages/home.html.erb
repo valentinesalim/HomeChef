@@ -1,42 +1,43 @@
+<div class="footer-sticky">
+  <%= render "shared/banner", title:"Be the Chef you always wanted to be...", content: "With our on demand videos, recipes, and fresh ingredients, upgrade your cooking skillset and find that girlfriend. ", show_button: true %>
+  <div class="banner-2">
+    <div class="parent-nowrap container" style="padding-top:100px;">
+      <h3 class="child-row-nowrap ">Hassle Free
+       <p class="child-row-nowrap ">Providing you with the exact ingredients/portions, say goodbye to grocery lists and long trips to the shops</p>
+      </h3><br>
+      <h3 class="child-row-nowrap ">Healthy
+        <p class="child-row-nowrap ">Our ingredient list is carefuly crafted by our in-house team of nutritionists to provide you with your ideal Macro and Micro Nutrients</p>
+      </h3><br>
+      <h3 class="child-row-nowrap ">Expert
+        <p class="child-row">Enjoy unlimited access to our library of recipes with detailed instructional videos with over 500+ registered Chefs</p>
+      </h3><br>
+    </div>
 
-<%= render "shared/banner", title:"Be the Chef you always wanted to be...", content: "With our on demand videos, recipes, and fresh ingredients, upgrade your cooking skillset and find that girlfriend. ", show_button: true %>
-<div class="banner-2">
-  <div class="parent-nowrap container" style="padding-top:100px;">
-    <h3 class="child-row-nowrap ">Hassle Free
-     <p class="child-row-nowrap ">Providing you with the exact ingredients/portions, say goodbye to grocery lists and long trips to the shops</p>
-    </h3><br>
-    <h3 class="child-row-nowrap ">Healthy
-      <p class="child-row-nowrap ">Our ingredient list is carefuly crafted by our in-house team of nutritionists to provide you with your ideal Macro and Micro Nutrients</p>
-    </h3><br>
-    <h3 class="child-row-nowrap ">Expert
-      <p class="child-row">Enjoy unlimited access to our library of recipes with detailed instructional videos with over 500+ registered Chefs</p>
-    </h3><br>
+    <!-- add 6 recipe cards + 4 chef examples -->
+    <!--get code from recipes.index.html  -->
+  <div class="banner-sml">
+    <dir class="container sub-banner">
+      <h1>Find what makes your mouth water...</h3>
+    </dir>
   </div>
 
-  <!-- add 6 recipe cards + 4 chef examples -->
-  <!--get code from recipes.index.html  -->
-<div class="banner-sml">
-  <dir class="container sub-banner">
-    <h1>Find what makes your mouth water...</h3>
-  </dir>
-</div>
-
-<div class="container parent">
-  <% 6.times do  %>
-    <%= render "shared/card_recipe" %>
-    <% end  %>
-</div>
-
-<div class="banner-sml">
-  <div class="container sub-banner">
-    <h1>Meet our Star Chefs!</h1>
+  <div class="container parent">
+    <% 6.times do  %>
+      <%= render "shared/card_recipe" %>
+      <% end  %>
   </div>
-</div>
 
-<div class="container">
-  <div class="card-deck" style="padding:84px;">
-    <% 3.times do%>
-     <%= render "shared/card_user", show_button: false  %>
-    <% end %>
+  <div class="banner-sml">
+    <div class="container sub-banner">
+      <h1>Meet our Star Chefs!</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card-deck" style="padding:84px;">
+      <% 3.times do%>
+       <%= render "shared/card_user", show_button: false  %>
+      <% end %>
+    </div>
   </div>
 </div>

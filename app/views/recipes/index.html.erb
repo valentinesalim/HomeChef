@@ -1,22 +1,27 @@
-<div style="margin-top: 64px;"></div>
-<%= render "shared/banner", title:"Recipe", content:"Discover a World fo Flavour with over 300+
-recipes on file.", show_button: false%>
-<div class=" pl-5" style="margin-left:134px;">
- <%= render "shared/dropdownbttn" %>
+
+
+<div class="container my-5" >
+  <div class="row">
+      <% @recipes.each do |recipe| %>
+        <div class="col-md-3">
+          <div style="text-align: center" class="card">
+              <% if recipe.photo.attached? %>
+                <%= cl_image_tag recipe.photo.key , class:"card-img-top card-recipe-img"%>
+              <% end %>
+              <h2><%= recipe.name %></h2>
+              <h3><%= recipe.category %></h3>
+              <a><%= link_to "More details", recipe_path(recipe), class: "btn btn-primary" %></a>
+              <p></p>
+          </div>
+         </div>
+    <% end %>
+
+
+  </div>
+
+
+
+
 </div>
 
-<div class="container-fluid parent" >
-    <% @recipes.each do |recipe| %>
-
-      <div style="text-align: center" class="card-product-infos col-md-3 child-row">
-          <%= cl_image_tag recipe.photo.key, height: 300, width: 400, crop: :fill if recipe.photo.attached?%>
-          <h2><%= recipe.name %></h2>
-          <h3><%= recipe.category %></h3>
-          <a><%= link_to "More details", recipe_path(recipe), class: "btn btn-primary" %></a>
-          <p></p>
-      </div>
-  <% end %>
-
-
-</div>
 
