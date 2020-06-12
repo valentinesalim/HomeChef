@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
     @weekly_ingredient_list = WeeklyIngredientList.find_by(date: Date.today.beginning_of_week)
     @recipe.weekly_ingredient_list = @weekly_ingredient_list
     youtube_id = YoutubeID.from(@recipe.video)
-    @recipe.video = "http://www.youtube.com/embed/#{youtube_id}"
+    @recipe.video = "https://www.youtube.com/embed/#{youtube_id}"
     if @recipe.save
       redirect_to @recipe
     else
