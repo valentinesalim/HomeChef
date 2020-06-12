@@ -7,7 +7,7 @@ frameborder="0" allowfullscreen></iframe>
 <p><strong>Description: </strong><%= @recipe.description %></p>
 <p><strong>Level: </strong><%= @recipe.level %></p>
 <p><strong>Serving Time: </strong><%= @recipe.serving_time %></p>
-<%= link_to 'Order Ingredients', orders_path(recipe_id: @recipe.id), method: :post %>
+<%= link_to 'Order Ingredients', new_order_path(recipe_id: @recipe.id)%>
 
 
 
