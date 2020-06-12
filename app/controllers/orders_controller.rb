@@ -11,11 +11,15 @@ class OrdersController < ApplicationController
     @order = Order.new
     authorize @order
     @order.user = current_user
-    @order.weekly_ingredient_list = @weeklyingredientlist
+    @recipe = Recipe.find(params[:recipe_id])
+    authorize @recipe
+    @order.weekly_ingredient_list = @recipe.weekly_ingredient_list
+    @ingredients = Ingredient.all
+    authorize @ingredients
     if @order.save
       redirect_to @order
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -32,7 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def set_weeklyingtedientlist
-    @weeklyingtedientlist = Weeklyingtedientlist.find(params[:weeklyingtedientlist_id])
+    @weeklyingredientlist = WeeklyIngredientList.find_by_id(1)
   end
 
   def order_params
