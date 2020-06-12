@@ -11,17 +11,22 @@
 <!-- CONTAINER FOR WEEK'S INGREDIENTS DISPLAY & ORDER BUTTON -->
 <!-- PENDING TASK: DESIGN AND STYLE -->
 <!-- PENDING TASK: Add amount to display -->
+
 <div class="banner-2">
-    <% @ingredients.each do |ingredient| %>
-      <%= cl_image_tag ingredient.photo.key, height: 300, width: 400, crop: :fill if ingredient.photo.attached?%>
-      <h3><%= ingredient.name %></h3>
-      <!-- PENDING TASK -> access weekly_ingredient.amount correctly. below not working  -->
-      <p> <%#= weekly_ingredient.amount %> <%= ingredient.unit %></p>
-    <% end %>
-  <%= link_to 'Buy Ingredient Set', orders_path(weekly_ingredient_list_id: @weekly_ingredient_list.id), method: :post, class: "btn btn-color" %>
+  <div class=" content container-profile col-sm-12" >
+      <% @weekly_ingredients.each do |wi| %>
+        <%= cl_image_tag wi.ingredient.photo.key, height: 100, width: 100, borderradius: 50, crop: :fill if wi.ingredient.photo.attached?%>
+        <h3><%= wi.ingredient.name %></h3>
+        <p> <%= wi.amount %> - <%= wi.ingredient.unit %></p>
+      <% end %>
+  </div>
+
+  <%= link_to 'Buy Ingredient Set', new_order_path(recipe_id: @recipe.id), class: "btn btn-color" %>
+
+
 </div>
 
-<!-- SMALL BANNER TO INTRODUCE NEXT SECTION -->
+<!-- SMALL BANNER TO INTRODUCE NEXT SECTION
 <div class="banner-sml">
   <dir class="container sub-banner">
     <h1>See what our chefs have already made with these ingredients</h1>
