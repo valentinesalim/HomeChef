@@ -18,4 +18,12 @@ class User < ApplicationRecord
 
 
   validates :first_name, :last_name, presence: true
+
+  def avatar
+    if self.photo.attached?
+      self.photo.key
+    else
+      "defaultprofile_ra7j6p"
+    end
+  end
 end
