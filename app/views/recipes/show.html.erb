@@ -1,6 +1,5 @@
 <%= render "shared/banner", title: @recipe.name, content:@recipe.category, show_button: false%>
 
-
 <div class="row ">
   <div class="col-md-1"></div>
   <div class="col-8 col-md-4">
@@ -11,7 +10,7 @@
     <h3><strong>Recipe Info</strong></h3>
     <p ><strong>Level: </strong><%= @recipe.level %></p>
     <p ><strong>Serving Time: </strong><%= @recipe.serving_time %></p>
-    <p ><%= link_to 'Order Ingredients', orders_path(recipe_id: @recipe.id), method: :post  %></p>
+    <p ><%= link_to 'Order Ingredients', new_order_path(recipe_id: @recipe.id)%></p>
   </div class=" col-md-2">
   <div>
 

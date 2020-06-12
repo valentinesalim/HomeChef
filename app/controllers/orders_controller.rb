@@ -6,18 +6,27 @@ class OrdersController < ApplicationController
     @orders = current_user.orders
   end
 
-  # POST "order"
-  def create
+  # GET "orders/new"
+  def new
     @order = Order.new
     authorize @order
     @order.user = current_user
     @recipe = Recipe.find(params[:recipe_id])
-    authorize @recipe
     @order.weekly_ingredient_list = @recipe.weekly_ingredient_list
     @ingredients = Ingredient.all
-    authorize @ingredients
+    @weekly_ingredient_list = @order.weekly_ingredient_list
+    @weekly_ingredients = @weekly_ingredient_list.weekly_ingredients
+  end
+
+  def create
+    @order = Order.new(order_params)
+    authorize @order
+    @order.user = current_user
+    @recipe = Recipe.find(params[:order][:recipe_id])
+    # @order.weekly_ingredient_list = @recipe.weekly_ingredient_list
+    @ingredients = Ingredient.all
     if @order.save
-      redirect_to @order
+      redirect_to order_path(@order)
     else
       render :new
     end
@@ -26,13 +35,13 @@ class OrdersController < ApplicationController
   # A user can see any order page
   # GET "orders/id"
   def show
-    @order = order.find(params[:id])
     authorize @order
   end
 
   private
+  
   def set_order
-    @order = order.find(params[:id])
+    @order = Order.find(params[:id])
   end
 
   def set_weeklyingtedientlist
@@ -40,7 +49,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:delivery_date, :delivery_location, :amount_portion)
+    params.require(:order).permit(:delivery_date, :delivery_location, :amount_portion, :weekly_ingredient_list_id)
   end
 
 end
