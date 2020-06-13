@@ -73,3 +73,7 @@ gem 'pundit'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'pg_search', '~> 2.3.0'
 gem 'youtube_id'
+# ------------------------------
+# Added by Matt on Saturday, 13 June:
+gem "bootstrap", ">= 4.3.1"
+gem 'acts-as-taggable-on', '~> 6.0'

@@ -3,18 +3,19 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-
     @recipes = policy_scope(Recipe)
-    @recipes = Recipe.all.order(name: :asc)
-    # IN CASE WE IMPLEMENT A SEARCH FEATURE:
-    # if params[:query].present?
-    #   @books = Recipe.search_or_filter(params[:query]).order(name: :asc)
-    # elsif params[:filter]
-    #   @filter = params[:filter][:query]
-    #   @recipes = Recipe.all.search_or_filter("#{@filter}").order(name: :asc)
-    # else
-    #   @recipes = Recipe.all.order(name: :asc)
-    # end
+
+    if params["search"]
+      @filter = params["search"]["categories"].concat(params["search"]["levels"]).flatten.reject(&:blank?)
+      @recipes = Recipe.all.global_search("#{@filter}").order(name: :asc)
+    else
+      @recipes = Recipe.all.order(name: :asc)
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
 

@@ -1,6 +1,12 @@
 class Recipe < ApplicationRecord
-  CATEGORIES = ["Meat", "Veggie", "Pasta", "Salad", "Soup", "Seafood", "Snack", "Vegetables", "Sweet/Dessert", "Bread and Pastries"]
-  LEVELS = ["Easy", "Medium", "Difficult", "Expert"]
+  acts_as_taggable_on :categories
+  acts_as_taggable_on :levels
+
+  $categories = ["Meat", "Veggie", "Pasta", "Salad", "Soup", "Seafood", "Snack", "Vegetables", "Sweet/Dessert", "Bread and Pastries"]
+  $levels = ["Easy", "Medium", "Difficult", "Expert"]
+
+  # CATEGORIES = ["Meat", "Veggie", "Pasta", "Salad", "Soup", "Seafood", "Snack", "Vegetables", "Sweet/Dessert", "Bread and Pastries"]
+  # LEVELS = ["Easy", "Medium", "Difficult", "Expert"]
 
   belongs_to :user
   belongs_to :weekly_ingredient_list
@@ -13,8 +19,8 @@ class Recipe < ApplicationRecord
   has_one_attached :photo
 
   validates :name, :description, :serving_time, presence: true
-  validates :category, presence: true, inclusion: { in: CATEGORIES }
-  validates :level, presence: true, inclusion: { in: LEVELS }
+  # validates :category, presence: true, inclusion: { in: $categories }
+  # validates :level, presence: true, inclusion: { in: $levels }
 
   def description_teaser
     # truncate(self.description, :length => 30)
@@ -29,5 +35,17 @@ class Recipe < ApplicationRecord
     # date_today= Date.today
     Recipe.where(:created_at => start_week..end_week)
   end
+
+  include PgSearch::Model
+
+  pg_search_scope :global_search,
+    against: [:name, :description ],
+  associated_against: {
+    categories: [:name],
+    levels: [:name]
+  },
+  using: {
+    tsearch: {any_word: true}
+  }
 
 end
