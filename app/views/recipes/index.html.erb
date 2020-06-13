@@ -1,27 +1,31 @@
-
-
-<div class="container my-5" >
-  <div class="row">
-      <% @recipes.each do |recipe| %>
-        <div class="col-md-3">
-          <div style="text-align: center" class="card">
-              <% if recipe.photo.attached? %>
-                <%= cl_image_tag recipe.photo.key , class:"card-img-top card-recipe-img"%>
-              <% end %>
-              <h2><%= recipe.name %></h2>
-              <h3><%= recipe.category %></h3>
-              <a><%= link_to "More details", recipe_path(recipe), class: "btn btn-primary" %></a>
-              <p></p>
-          </div>
-         </div>
-    <% end %>
-
-
-  </div>
-
-
-
-
+<!-- SMALL BANNER TO INTRODUCE NEXT SECTION -->
+<div class="banner-sml">
+  <dir class="container sub-banner">
+    <h1>Browse through our all-time recipe records</h1>
+  </dir>
 </div>
 
+<div class="container cards">
+  <div class="row">
 
+      <% @recipes.each do |recipe| %>
+        <div class="card child-row" style="width: 20rem;">
+
+          <div class="card-recipe-img">
+            <% if recipe.photo.attached? %>
+                <%= link_to recipe_path(recipe) do %>
+                  <%= cl_image_tag recipe.photo.key , class:"card-img-top card-recipe-img"%>
+                <% end %>
+            <% end %>
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title"><%= recipe.name %></h5>
+            <p class="card-text"><%= recipe.description_teaser%>...<%= link_to "More details", recipe_path(recipe)%></p>
+          </div>
+
+        </div>
+      <% end %>
+
+  </div>
+</div>
