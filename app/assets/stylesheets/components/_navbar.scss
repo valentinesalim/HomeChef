@@ -1,7 +1,10 @@
 .navbar-lewagon {
   justify-content: space-between;
-  // background: #C33D48;
-  background: gray;
+  background: #D8343A;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index : 10;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -14,16 +17,19 @@
 
 .navbar-title {
   color: white;
+  font-size: 20px;
 }
-
 
 .font-primary {
   color: white;
 }
 
-.nav-container {
-  width:10px;
-  display:inline;
+.font-primary:hover {
+  color: #fdadb5;
+  text-decoration: none!important;
 }
 
 
+.content {
+  padding: 16px;
+}
