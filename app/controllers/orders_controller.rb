@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
     # @order.weekly_ingredient_list = @recipe.weekly_ingredient_list
     @ingredients = Ingredient.all
     if @order.save
-      redirect_to order_path(@order)
+      redirect_to user_path(current_user.id)
     else
       render :new
     end
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
   end
 
   private
-  
+
   def set_order
     @order = Order.find(params[:id])
   end
