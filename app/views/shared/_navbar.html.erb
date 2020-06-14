@@ -10,6 +10,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
   
   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto" style="margin-right: 200px">
@@ -20,6 +21,7 @@
         <%= link_to "Recipes", recipes_path, class: "font-primary" %>
       </li>
       <%= render 'shared/search' %>
+
       <% if user_signed_in? %>
         <li>
           <h1 style="font-size: 17px; color: white; margin-right: 10px; margin-top: 8px;">Hey <%=current_user[:first_name]%>! </h1>
