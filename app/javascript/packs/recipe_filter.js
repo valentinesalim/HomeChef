@@ -5,7 +5,7 @@
 //   Rails.start();
 // }
 
-console.log('Test: Hello from the recipe filter JS')
+console.log('Test: Hello from the recipe filter JS');
 
 var checkBoxes = document.querySelectorAll(".form-check-input");
 var form = document.querySelector('form');
