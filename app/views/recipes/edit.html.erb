@@ -8,12 +8,11 @@
         <%= f.input :description %>
         <%= f.input :serving_time %>
         <%= f.input :level, collection: Recipe::LEVELS%>
-        <%# <%= f.input :photo, as: :file %>
-        <%= f.input :total_price %>
+        <%= f.input :video, placeholder: "Enter a valid YouTube URL name", hint: "Must include ID such as 'Z_GcsR7Q99s&t=3s' at the end like this URL example: https://www.youtube.com/watch?v=Z_GcsR7Q99s&t=3s" %>
+        <%= f.input :photo, as: :file %>
     </div>
     <div class="form-actions">
         <%= f.button :submit, class:"btn btn-color" %>
-        <%= link_to 'Back to Main', recipes_path %>
     </div>
 
     <% end %>
