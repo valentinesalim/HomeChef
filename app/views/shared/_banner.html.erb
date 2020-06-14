@@ -1,10 +1,9 @@
-<div class="banner">
-  <div class="container sub-banner" style=" padding-right: 24px;">
-    <h1><%= title %></h1>
-    <p><%= content %></p>
-      <% if show_button == true  %>
-      <%= link_to "Register", new_user_registration_path, class: "btn btn-color" %>
-      <% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0)), url(<%= asset_path 'banner.jpg' %>);">
+  <div class="banner-attribute">
+    <h1>Become the Chef</strong></h1>
+    <h1>You've always wanted to be</strong></h1>
+    <p>Everyone can cook, with tutorials</p>
+    <a class="btn btn-color" href="#">Start now</a>
   </div>
 </div>
 
