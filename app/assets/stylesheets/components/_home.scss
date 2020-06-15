@@ -1,6 +1,53 @@
+home.scss
+
 
 #home_container .cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
+}
+
+.start-cooking {
+    padding: 0 10%;
+    padding-top: 80px;
+    padding-bottom: 90px;
+    text-align: center;
+    background-color: #c4c5cc;
+    position: relative;
+}
+
+.start-cooking .decoration1 {
+    width: 213px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+.start-cooking .decoration2 {
+    width: 271px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.start-cooking .button-wrapper {
+    margin-top: 33px;
+    text-align: center;
+}
+
+.start-cooking .title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #383F51;
+    line-height: 1.3;
+    font-size: 40px;
+}
+
+.start-cooking .sub-title {
+    color: #6c748f;
+    font-size: 14px;
+    line-height: 1.43;
+    max-width: 375px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 24px;
 }

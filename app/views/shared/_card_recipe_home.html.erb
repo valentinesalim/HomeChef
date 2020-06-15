@@ -1,5 +1,3 @@
-
-
 <% @recipes.take(6).each do |recipe| %>
   <div class="card child-row" style="width: 20rem; margin: 20px;">
 
@@ -13,10 +11,9 @@
 
     <div class="card-body">
       <h4 class="card-title"><strong><%= recipe.name %></strong></h4>
-      <p style="color: grey; margin: 0px;"><%= recipe.category_list %></p>
-      <p class="card-text"><%= recipe.description_teaser%>...<%= link_to "More details", recipe_path(recipe)%></p>
+      <p style="color: #8D9DA7; margin: 0px;"><%= recipe.category_list %></p>
+      <i style="color: #8D9DA7;" class="far fa-clock"> <%= recipe.serving_time %> Minutes</i>
     </div>
 
   </div>
 <% end %>
-
