@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
 
     @recipes = policy_scope(Recipe)
     @recipes = Recipe.all.order(name: :asc)
+    @weekly_ingredients = WeeklyIngredient.all
     # IN CASE WE IMPLEMENT A SEARCH FEATURE:
     # if params[:query].present?
     #   @books = Recipe.search_or_filter(params[:query]).order(name: :asc)
@@ -29,6 +30,7 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
     @weekly_ingredient_list = WeeklyIngredientList.find_by(date: Date.today.beginning_of_week)
     @recipe.weekly_ingredient_list = @weekly_ingredient_list
+    
     youtube_id = YoutubeID.from(@recipe.video)
     @recipe.video = "https://www.youtube.com/embed/#{youtube_id}"
     if @recipe.save
@@ -42,6 +44,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @order = Order.new
     authorize @recipe
+    @weekly_ingredients = WeeklyIngredient.all
   end
 
   def edit
