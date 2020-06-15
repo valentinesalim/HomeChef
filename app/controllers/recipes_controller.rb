@@ -3,19 +3,18 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-
     @recipes = policy_scope(Recipe)
-    @recipes = Recipe.all.order(name: :asc)
     @weekly_ingredients = WeeklyIngredient.all
-    # IN CASE WE IMPLEMENT A SEARCH FEATURE:
-    # if params[:query].present?
-    #   @books = Recipe.search_or_filter(params[:query]).order(name: :asc)
-    # elsif params[:filter]
-    #   @filter = params[:filter][:query]
-    #   @recipes = Recipe.all.search_or_filter("#{@filter}").order(name: :asc)
-    # else
-    #   @recipes = Recipe.all.order(name: :asc)
-    # end
+    if params["search"]
+      @filter = params["search"]["categories"].concat(params["search"]["levels"]).flatten.reject(&:blank?)
+      @recipes = Recipe.all.global_search("#{@filter}").order(name: :asc)
+    else
+      @recipes = Recipe.all.order(name: :asc)
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
@@ -32,7 +31,9 @@ class RecipesController < ApplicationController
     @recipe.weekly_ingredient_list = @weekly_ingredient_list
     
     youtube_id = YoutubeID.from(@recipe.video)
-    @recipe.video = "https://www.youtube.com/embed/#{youtube_id}"
+    if @recipe.video.present?
+      @recipe.video = "https://www.youtube.com/embed/#{youtube_id}"
+    end
     if @recipe.save
       redirect_to @recipe
     else
@@ -52,7 +53,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe= Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.update(recipe_params)
     redirect_to recipes_path
@@ -68,7 +69,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :category, :description, :serving_time, :level, :total_price, :photo, :video)
+    params.require(:recipe).permit(:name, :category_list, :description, :serving_time, :level_list, :total_price, :photo, :video)
   end
 
   def set_recipe

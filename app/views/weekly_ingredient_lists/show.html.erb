@@ -38,24 +38,7 @@
 <div class="container cards">
   <div class="row">
     <% if @recipe.created_this_week? %>
-      <% @recipes.each do |recipe| %>
-        <div class="card child-row" style="width: 20rem;">
-
-          <div class="card-recipe-img">
-            <% if recipe.photo.attached? %>
-                <%= link_to recipe_path(recipe) do %>
-                  <%= cl_image_tag recipe.photo.key , class:"card-img-top card-recipe-img"%>
-                <% end %>
-            <% end %>
-          </div>
-
-          <div class="card-body">
-            <h5 class="card-title"><%= recipe.name %></h5>
-            <p class="card-text"><%= recipe.description_teaser%>...<%= link_to "More details", recipe_path(recipe)%></p>
-          </div>
-
-        </div>
-      <% end %>
+      <%= render 'shared/card_recipe_matt', recipes: @recipes %>
     <% end %>
   </div>
 </div>

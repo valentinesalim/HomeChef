@@ -1,0 +1,13 @@
+console.log('Test: Hello from index.js.erb')
+
+function replaceRecipes (innerHTML) {
+  const recipes = document.getElementById('recipes');
+  recipes.innerHTML = innerHTML;
+}
+
+if ('<%= @filter %>' === "[]") {
+  replaceRecipes("<%= j render 'shared/card_recipe_matt', recipes: Recipe.all %>");
+}
+else {
+  replaceRecipes("<%= j render 'shared/card_recipe_matt', recipes: @recipes %>");
+}

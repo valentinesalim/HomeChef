@@ -8,24 +8,25 @@
 <div class="container cards">
   <div class="row">
 
-      <% @recipes.each do |recipe| %>
-        <div class="card child-row" style="width: 20rem;">
+    <div class="col-xs-12 col-sm-2">
+      <div class="position-sticky sticky-form">
+        <h1>Recipes</h1>
+        <hr>
+        <%= simple_form_for :search, url: recipes_path, method: "GET", remote: true do |f| %>
+          <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes, onClick: "test"%>
+          <%= f.input :levels, label: "Level", collection: $levels, as: :check_boxes  %>
+          <%= link_to "Reset", recipes_path  %>
+        <% end %>
 
-          <div class="card-recipe-img">
-            <% if recipe.photo.attached? %>
-                <%= link_to recipe_path(recipe) do %>
-                  <%= cl_image_tag recipe.photo.key , class:"card-img-top card-recipe-img"%>
-                <% end %>
-            <% end %>
-          </div>
-
-          <div class="card-body">
-            <h5 class="card-title"><%= recipe.name %></h5>
-            <p class="card-text"><%= recipe.description_teaser%>...<%= link_to "More details", recipe_path(recipe)%></p>
-          </div>
-
-        </div>
-      <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-10">
+      <div id="recipes" class="row">
+        <%= render 'shared/card_recipe_matt', recipes: @recipes %>
+      </div>
+    </div>
 
   </div>
 </div>
+
+<%= javascript_pack_tag 'recipe_filter' %>
