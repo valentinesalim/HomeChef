@@ -5,18 +5,18 @@
   frameborder="0" allowfullscreen></iframe></p>
 </div>
 
-<div class="row ">
+<div class="row">
   <div class="col-md-1"></div>
     <div class="col-8 col-md-4" style="padding-left: 120px;">
       <h1 class="m-1" ><%= @recipe.name %></h1>
-      <button class="m-1 btn btn-light" style="margin-left: 400px;"><%= @recipe.category %></button>
+      <button class="m-1 btn btn-light" style="margin-left: 400px;"><%= @recipe.category_list %></button>
       <p class="m-1">Description: <br>
       <%= @recipe.description %></p>
     </div>
     <div class="col-2 col-md-2 mt-3 card" style="padding-right: 100px;">
       <h3><strong>Recipe Info</strong></h3>
       <p><strong>Serving Time: </strong><%= @recipe.serving_time %> minutes</p>
-      <p><strong>Difficulty: </strong><%= @recipe.level %></p>
+      <p><strong>Level: </strong><%= @recipe.level_list %></p>
       <p><strong>Ingredients: </strong>
         <div style="mt-1"><% @weekly_ingredients.each do |wi| %>
           <li><%= wi.ingredient.name %></li>

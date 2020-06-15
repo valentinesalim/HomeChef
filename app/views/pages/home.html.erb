@@ -29,11 +29,14 @@
     </dir>
   </div>
 
-  <div class="container parent">
-    <% 6.times do  %>
-      <%= render "shared/card_recipe" %>
-      <% end  %>
+
+  <div class="container cards">
+    <div class="row">
+      
+        <%= render 'shared/card_recipe_home', recipes: @recipes %>
+    </div>
   </div>
+
 
   <div class="banner-sml">
     <div class="container sub-banner">
