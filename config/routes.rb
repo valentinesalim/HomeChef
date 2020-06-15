@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :ingredients
 
   resources :weekly_ingredient_lists
+
+  resources :my_cookbooks, only: [:show]
+
   resources :users
 
 end
