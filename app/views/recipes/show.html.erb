@@ -1,4 +1,4 @@
-<%= render "shared/banner", title: @recipe.name, content:@recipe.category, show_button: false%>
+<%= render "shared/banner", title: @recipe.name, content:@recipe.category_list, show_button: false%>
 
 <div class="row ">
   <div class="col-md-1"></div>
@@ -8,7 +8,7 @@
   <div class="col-md-3"></div>
   <div class="col-2 col-md-2 mt-5 card">
     <h3><strong>Recipe Info</strong></h3>
-    <p ><strong>Level: </strong><%= @recipe.level %></p>
+    <p ><strong>Level: </strong><%= @recipe.level_list %></p>
     <p ><strong>Serving Time: </strong><%= @recipe.serving_time %></p>
     <p ><%= link_to 'Order Ingredients', new_order_path(recipe_id: @recipe.id), class: "btn btn-color"%></p>
   </div class=" col-md-2">

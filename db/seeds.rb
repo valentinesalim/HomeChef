@@ -55,13 +55,17 @@ puts "created new test user"
   u.save!
   puts "created new user"
 
+  categories = ["Meat", "Veggie", "Pasta", "Salad", "Soup", "Seafood", "Snack", "Vegetables", "Sweet/Dessert", "Bread and Pastries"]
+  levels = ["Easy", "Medium", "Difficult", "Expert"]
   #RECIPE CONNECTED TO USER ABOVE
   2.times do
     r = Recipe.new(name: Faker::Food.dish,
-                    category: Recipe::CATEGORIES.sample,
+                    # category: Recipe::CATEGORIES.sample,
+                    category_list: categories.sample,
                     description: Faker::Food.description,
                     serving_time: rand(10..90),
-                    level: Recipe::LEVELS.sample,
+                    # level: Recipe::LEVELS.sample,
+                    level_list: levels.sample,
                     published: true,
                     weekly_ingredient_list_id: wil.id,
                     user_id: u.id,
