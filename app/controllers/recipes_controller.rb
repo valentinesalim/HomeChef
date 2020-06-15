@@ -8,10 +8,11 @@ class RecipesController < ApplicationController
     # FOR SEARCH IN NAVBAR
     if params[:query].present?
       @recipes = Recipe.global_search(params[:query]).order(name: :asc)
-    # FOR CATEGORIES & LEVEL FILTERING
-    elsif params["filter"]
-      @filter = params["filter"]["categories"].concat(params["filter"]["levels"]).flatten.reject(&:blank?)
+    # FOR CATEGORY & LEVEL FILTERING
+    elsif params["search"]
+      @filter = params["search"]["categories"].concat(params["search"]["levels"]).flatten.reject(&:blank?)
       @recipes = Recipe.all.global_search("#{@filter}").order(name: :asc)
+      raise
     else
       @recipes = Recipe.all.order(name: :asc)
     end
