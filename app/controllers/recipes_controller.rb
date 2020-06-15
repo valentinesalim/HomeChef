@@ -4,10 +4,10 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = policy_scope(Recipe)
-
+    @weekly_ingredients = WeeklyIngredient.all
     if params["search"]
       @filter = params["search"]["categories"].concat(params["search"]["levels"]).flatten.reject(&:blank?)
-      @recipes = Recipe.all.global_search("#{@filter}")
+      @recipes = Recipe.all.global_search("#{@filter}").order(name: :asc)
     else
       @recipes = Recipe.all.order(name: :asc)
     end
@@ -15,7 +15,6 @@ class RecipesController < ApplicationController
       format.html
       format.js
     end
-
   end
 
 
@@ -30,6 +29,7 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
     @weekly_ingredient_list = WeeklyIngredientList.find_by(date: Date.today.beginning_of_week)
     @recipe.weekly_ingredient_list = @weekly_ingredient_list
+    
     youtube_id = YoutubeID.from(@recipe.video)
     if @recipe.video.present?
       @recipe.video = "https://www.youtube.com/embed/#{youtube_id}"
@@ -45,6 +45,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @order = Order.new
     authorize @recipe
+    @weekly_ingredients = WeeklyIngredient.all
   end
 
   def edit
