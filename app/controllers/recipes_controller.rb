@@ -5,8 +5,12 @@ class RecipesController < ApplicationController
   def index
     @recipes = policy_scope(Recipe)
     @weekly_ingredients = WeeklyIngredient.all
-    if params["search"]
-      @filter = params["search"]["categories"].concat(params["search"]["levels"]).flatten.reject(&:blank?)
+    # FOR SEARCH IN NAVBAR
+    if params[:query].present?
+      @recipes = Recipe.global_search(params[:query]).order(name: :asc)
+    # FOR CATEGORIES & LEVEL FILTERING
+    elsif params["filter"]
+      @filter = params["filter"]["categories"].concat(params["filter"]["levels"]).flatten.reject(&:blank?)
       @recipes = Recipe.all.global_search("#{@filter}").order(name: :asc)
     else
       @recipes = Recipe.all.order(name: :asc)
@@ -29,7 +33,7 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
     @weekly_ingredient_list = WeeklyIngredientList.find_by(date: Date.today.beginning_of_week)
     @recipe.weekly_ingredient_list = @weekly_ingredient_list
-    
+
     youtube_id = YoutubeID.from(@recipe.video)
     if @recipe.video.present?
       @recipe.video = "https://www.youtube.com/embed/#{youtube_id}"

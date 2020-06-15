@@ -12,7 +12,7 @@
       <div class="position-sticky sticky-form">
         <h1>Recipes</h1>
         <hr>
-        <%= simple_form_for :search, url: recipes_path, method: "GET", remote: true do |f| %>
+        <%= simple_form_for :filter, url: recipes_path, method: "GET", remote: true do |f| %>
           <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes, onClick: "test"%>
           <%= f.input :levels, label: "Level", collection: $levels, as: :check_boxes  %>
           <%= link_to "Reset", recipes_path  %>
