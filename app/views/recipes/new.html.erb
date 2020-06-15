@@ -1,3 +1,6 @@
+<% @recipe.errors.full_messages.each do |message| %>
+  <%= render "shared/flashes", alert: message %>
+<% end %>
 
 <div class="content col-md-4 offset-md-1">
     <br>
@@ -9,7 +12,7 @@
         <%= f.input :description %>
         <%= f.input :serving_time %>
         <%= f.input :level_list, label: "Level", collection: $levels%>
-        <%= f.collection_check_boxes :weekly_ingredient_list, Ingredient.all, :id, :name   %>
+        <%#= f.collection_check_boxes :weekly_ingredient_list, Ingredient.all, :id, :name   %>
         <%= f.input :video, placeholder: "Enter a valid YouTube URL name", hint: "Must include ID such as 'Z_GcsR7Q99s&t=3s' at the end like this URL example: https://www.youtube.com/watch?v=Z_GcsR7Q99s&t=3s" %>
         <%= f.input :photo, as: :file %>
     </div>

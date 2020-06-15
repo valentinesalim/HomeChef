@@ -1,17 +1,17 @@
-// import Rails from "@rails/ujs";
-// window.Rails = Rails;
-// require("modal-confirm");
-// if(Rails.fire(document, "rails:attachBindings")) {
-//   Rails.start();
-// }
+import Rails from "@rails/ujs";
 
 console.log('Test: Hello from the recipe filter JS');
 
 var checkBoxes = document.querySelectorAll(".form-check-input");
 var form = document.querySelector('form');
 
-for (const check of checkBoxes) {
-  check.addEventListener( 'change', function() {
-  Rails.fire(form, 'submit');
-  });
+const categorisationFilter = () => {
+  for (const check of checkBoxes) {
+    check.addEventListener('change', (e) => {
+      console.log("Form change test", form);
+      Rails.fire(form, 'submit');
+    });
+  }
 }
+
+export { categorisationFilter };

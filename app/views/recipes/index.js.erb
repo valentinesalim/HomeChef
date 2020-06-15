@@ -6,8 +6,8 @@ function replaceRecipes (innerHTML) {
 }
 
 if ('<%= @filter %>' === "[]") {
-  replaceRecipes("<%= j render 'recipe', recipes: Recipe.all %>");
+  replaceRecipes("<%= j render 'shared/card_recipe_matt', recipes: Recipe.all %>");
 }
 else {
-  replaceRecipes("<%= j render 'recipe', recipes: @recipes %>");
+  replaceRecipes("<%= j render 'shared/card_recipe_matt', recipes: @recipes %>");
 }
