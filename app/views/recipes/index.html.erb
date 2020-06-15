@@ -5,27 +5,18 @@
   </dir>
 </div>
 
-<div class="container cards">
-  <div class="row">
+<div id="recipe_index" class="container d-flex">
+  <div class="">
+    <h1>Recipes</h1>
+    <%= simple_form_for :search, url: recipes_path, method: "GET", remote: true do |f| %>
+      <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes, onClick: "test"%>
+      <%= f.input :levels, label: "Level", collection: $levels, as: :check_boxes  %>
+      <%= link_to "Reset", recipes_path  %>
+    <% end %>
+  </div>
 
-    <div class="col-xs-12 col-sm-2">
-      <div class="position-sticky sticky-form">
-        <h1>Recipes</h1>
-        <hr>
-        <%= simple_form_for :search, url: recipes_path, method: "GET", remote: true do |f| %>
-          <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes, onClick: "test"%>
-          <%= f.input :levels, label: "Level", collection: $levels, as: :check_boxes  %>
-          <%= link_to "Reset", recipes_path  %>
-        <% end %>
-
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-10">
-      <div id="recipes" class="row">
-        <%= render 'shared/card_recipe_matt', recipes: @recipes %>
-      </div>
-    </div>
-
+  <div id="recipes" class="cards">
+    <%= render 'shared/card_recipe_matt', recipes: @recipes %>
   </div>
 </div>
 

@@ -38,7 +38,7 @@ class Recipe < ApplicationRecord
 
   def description_teaser
     # truncate(self.description, :length => 30)
-    self.description.slice(0..40)
+    self.description.slice(0..60)
   end
 
   def created_this_week?

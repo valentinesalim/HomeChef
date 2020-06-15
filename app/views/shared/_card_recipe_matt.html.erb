@@ -10,10 +10,9 @@
     </div>
 
     <div class="card-body">
-      <h5 class="card-title"><%= recipe.name %></h5>
-       <p class="card-text"><%= recipe.description_teaser%>...<%= link_to "More details", recipe_path(recipe)%></p>
-       <button class="btn-color"><%= recipe.category_list %></button>
-       <button class="btn-grey"><%= recipe.level_list %></button>
+      <h4 class="card-title"><strong><%= recipe.name %></strong></h4>
+      <p class="card-title-category"><%= recipe.category_list %></p>
+      <p class="card-text"><%= recipe.description_teaser%>...<%= link_to "More details", recipe_path(recipe)%></p>
     </div>
 
   </div>
