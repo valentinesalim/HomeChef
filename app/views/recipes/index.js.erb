@@ -1,4 +1,19 @@
+import Rails from "@rails/ujs";
+
 console.log('Test: Hello from index.js.erb')
+
+var checkBoxes = document.querySelectorAll(".form-check-input");
+
+var form = document.getElementById("filter-recipes");
+
+const categorisationFilter = () => {
+  for (const check of checkBoxes) {
+    check.addEventListener('change', (e) => {
+      console.log("Form change test", form);
+      Rails.fire(form, 'submit');
+    });
+  }
+}
 
 function replaceRecipes (innerHTML) {
   const recipes = document.getElementById('recipes');
@@ -7,7 +22,11 @@ function replaceRecipes (innerHTML) {
 
 if ('<%= @filter %>' === "[]") {
   replaceRecipes("<%= j render 'shared/card_recipe_matt', recipes: Recipe.all %>");
+  console.log('no filter')
 }
 else {
   replaceRecipes("<%= j render 'shared/card_recipe_matt', recipes: @recipes %>");
+  console.log('filter present')
 }
+
+categorisationFilter();

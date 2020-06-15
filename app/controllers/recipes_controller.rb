@@ -12,7 +12,6 @@ class RecipesController < ApplicationController
     elsif params["search"]
       @filter = params["search"]["categories"].concat(params["search"]["levels"]).flatten.reject(&:blank?)
       @recipes = Recipe.all.global_search("#{@filter}").order(name: :asc)
-      raise
     else
       @recipes = Recipe.all.order(name: :asc)
     end

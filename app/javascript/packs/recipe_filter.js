@@ -1,6 +1,6 @@
 import Rails from "@rails/ujs";
 
-console.log('Test: Hello from the recipe filter JS');
+console.log('Test: Alex Show Hello from the recipe filter JS');
 
 var checkBoxes = document.querySelectorAll(".form-check-input");
 // original:
