@@ -1,0 +1,32 @@
+
+
+
+
+
+<div class="chef-card-container">
+  <img class="avatar-profile" src="<%= @user.photo.attached? ? (cl_image_path @user.photo.key) : (image_path "defaultprofile.png")%>" >
+  <div class="info-container row">
+    <div class="top">
+      <div>
+      <h4><strong>Senor Taxo</strong></h4>
+      <p>Mexican Chef Supreme with a passion for <br>
+      Tacos and Burritos</p>
+      </div>
+    </div>
+    <div class="row pl-3">
+      <div class="column">
+        <div class="text">
+          <h4><strong>Followers</strong></h4>
+          <p class="pl-3">100</p>
+        </div>
+       </div>
+       <div class="column">
+        <div class="text">
+          <h4><strong>Following</strong></h4>
+          <p class="pl-3">100</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
