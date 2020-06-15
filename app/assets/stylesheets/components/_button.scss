@@ -1,11 +1,20 @@
 .btn-color {
-    background-color: #C33D48;
+    background-color: #D73339;
     color: white;
-    border-radius: 5px;
 }
 
 .btn-grey {
     background-color: rgb(180, 180, 180);
     color: white;
-    border-radius: 5px;
+    border-radius: 10px;
+}
+
+.btn-color:hover {
+    background-color: #b82c31;
+    color: white;
+    border-radius: 10px;
+}
+
+.btn-navbar {
+    background-color: #F15C60;
 }

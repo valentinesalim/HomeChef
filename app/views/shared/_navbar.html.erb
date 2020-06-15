@@ -11,37 +11,38 @@
   </button>
 
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav justify-content-center">
-        <li class="nav-link active navbar-title ">
-          <%= link_to "This Week", weekly_ingredient_list_path(1), class: "font-primary" %>
-        </li>
-        <li class="nav-link active navbar-title">
-          <%= link_to "Recipes", recipes_path, class: "font-primary" %>
-        </li>
+  
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" style="margin-right: 200px">
+      <li class="nav-link active navbar-title">
+        <%= link_to "This Week", weekly_ingredient_list_path(1), class: "font-primary" %>
+      </li>
+      <li class="nav-link active navbar-title" >
+        <%= link_to "Recipes", recipes_path, class: "font-primary" %>
+      </li>
+      <%= render 'shared/search' %>
 
       <% if user_signed_in? %>
-
-        <li class="nav-item active" style="margin-right: 40px; margin-left: 10px;">
-          <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-light"%>
-        </li>
         <li>
           <h1 style="font-size: 17px; color: white; margin-right: 10px; margin-top: 8px;">Hey <%=current_user[:first_name]%>! </h1>
         </li>
         <li class="nav-item dropdown">
           <%= cl_image_tag current_user.avatar, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Add New Recipe", new_recipe_path, class: "dropdown-item" %>
             <%= link_to "Profile", user_path(current_user.id), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
       <% else %>
-        <li class="nav-item nav-container " style="padding-left:34px; padding-right:64px;">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item nav-container " style="padding-right:89px;">
-          <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
-        </li>
+        <ul class="navbar-nav mr-auto" style="padding-right: 10px">
+          <li class="nav-item nav-container " style="padding-left:34px; padding-right:64px;">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item nav-container " style="padding-right:89px;">
+            <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
+          </li>
+        </ul>  
       <% end %>
     </ul>
   </div>
