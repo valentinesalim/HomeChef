@@ -23,31 +23,30 @@
   </div>
     <!-- add 6 recipe cards + 4 chef examples -->
     <!--get code from recipes.index.html  -->
-  <div class="banner-sml">
+  <div class="container-why">
     <dir class="container sub-banner">
-      <h1>Find what makes your mouth water...</h3>
+      <h1>Recommended recipe</h3>
     </dir>
   </div>
 
 
-  <div class="container cards">
+  <div class="container">
     <div class="row">
-      
         <%= render 'shared/card_recipe_home', recipes: @recipes %>
     </div>
   </div>
 
 
-  <div class="banner-sml">
+  <div class="container-why">
     <div class="container sub-banner">
       <h1>Meet our Star Chefs!</h1>
     </div>
   </div>
 
-  <div class="container">
-    <div class="card-deck" style="padding:84px;">
-      <% 3.times do%>
-       <%= render "shared/card_user", show_button: false  %>
+  <div id="home_container" class="container" style="margin-bottom: 100px; padding: 50px;">
+    <div class="cards">
+      <% 9.times do %>
+        <%= render "shared/card_user", show_button: false  %>
       <% end %>
     </div>
   </div>

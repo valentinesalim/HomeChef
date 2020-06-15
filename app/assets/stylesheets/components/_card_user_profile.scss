@@ -8,6 +8,11 @@
   display: flex;
 }
 
+.card-chef {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
 
 .chef-card-container .avatar {
   border-radius:24;
@@ -23,6 +28,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  justify-content: center;
 }
 
 .column {
