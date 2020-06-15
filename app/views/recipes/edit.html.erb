@@ -4,10 +4,11 @@
     <%= simple_form_for(@recipe) do |f| %>
     <div class="form-inputs">
         <%= f.input :name %>
-        <%= f.input :category, collection: Recipe::CATEGORIES%>
+        <%= f.input :category_list, label: "Category",  collection: $categories%>
         <%= f.input :description %>
         <%= f.input :serving_time %>
-        <%= f.input :level, collection: Recipe::LEVELS%>
+        <%= f.input :level_list, label: "Level", collection: $levels%>
+        <%#= f.collection_check_boxes :weekly_ingredient_list, Ingredient.all, :id, :name   %>
         <%= f.input :video, placeholder: "Enter a valid YouTube URL name", hint: "Must include ID such as 'Z_GcsR7Q99s&t=3s' at the end like this URL example: https://www.youtube.com/watch?v=Z_GcsR7Q99s&t=3s" %>
         <%= f.input :photo, as: :file %>
     </div>
