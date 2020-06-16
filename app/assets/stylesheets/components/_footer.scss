@@ -2,7 +2,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    background: #D8343A;
+    background: #383F51;
     color:white;
     padding: 58px 0;
     height: 50px;
@@ -10,7 +10,7 @@
 .footer-links {
     display: flex;
     align-items: center;
-
+    margin-left: 400px;
 }
 .footer-links a {
     color: white;
@@ -27,14 +27,15 @@
 }
 
 .footer-links h1 {
-    color: white;
+    color: #6C748F;
     font-size: 20px;
+    font-weight: bold;
     position: absolute;
     left: 20px;
 }
 
 .footer-links h6 {
-    color:white;
+    color:#6C748F;
     position: absolute;
     right: 20px;
 }
