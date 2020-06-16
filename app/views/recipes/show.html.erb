@@ -13,6 +13,7 @@
     <div class="center">
       <%= render "shared/card_user_profile" %>
     </div>
+
   </div>
   <div class="recipe-info-card my-3">
     <h3><strong>Recipe Info</strong></h3>
@@ -23,6 +24,7 @@
         <li><%= wi.ingredient.name %></li>
     </p>
       <% end %>
+
       </div>
     <div class="d-flex">
       <button class="btn btn-success m-1"><%= link_to 'Order', new_order_path(recipe_id: @recipe.id)%></button>
