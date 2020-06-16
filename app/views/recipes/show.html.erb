@@ -25,7 +25,7 @@
         </div>
       <div class="row" style="margin: 10px;">
         <%= link_to 'Order Ingredients', new_order_path(recipe_id: @recipe.id), class: "btn btn-primary"%>
-        <%= link_to 'Add to Cookbook', new_order_path(recipe_id: @recipe.id), class: "btn btn-primary"%>
+        <%= link_to 'Add to Cookbook', my_cookbook_path(recipe_id: @recipe.id), class: "btn btn-primary"%>
       </div>
     </div>
   <div>
