@@ -42,7 +42,7 @@
         <tr>
           <td>Price (per portion): </td>
           <td>$</td>
-          <td class="amount-column" id="price_per_portion"><%=@recipe.weekly_ingredient_list.price_per_portion%></td>
+          <td class="amount-column" id="price_per_portion" data-portion-price="<%= @recipe.weekly_ingredient_list.price_per_portion %>"><%= @recipe.weekly_ingredient_list.price_per_portion %></td>
         </tr>
 
         id="price_per_portion"
@@ -68,7 +68,7 @@
           total_price = @recipe.weekly_ingredient_list.price_per_portion * @recipe.amount -->
           <td>
             <div class="d-flex justify-content-center align-items-center">
-              <%=f.input :total_order_price, input_html: {class:"order-total", id:"order-total-price", onchange:"orderTotalCalculation(this.value)" }, wrapper: false, label: false, disabled: true %>
+              <%=f.input :total_order_price, input_html: {class:"order-total", id:"order-total-price", value:"tbd", onchange:"orderTotalCalculation(this.value)" }, wrapper: false, label: false, disabled: true %>
             </div>
           </td>
          <!-- <td class="amount-column"> xx$</td> -->
