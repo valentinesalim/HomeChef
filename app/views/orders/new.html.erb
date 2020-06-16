@@ -1,42 +1,70 @@
 
-<h1><strong>Confirm your order</strong></h1>
-    <%= simple_form_for [@order] do |f|%>
-<div class="content container-profile col-sm-12" style="justify-content: center" >
+<!-- PAGE HEADER -->
+<div class="banner-sml">
+  <dir class="container sub-banner">
+    <h1>Confirm your order</h1>
+  </dir>
+</div>
 
-        <div class="form-inputs">
-            <%= f.input :delivery_location, label: 'Delivery Location', placeholder: "Enter where you would like the ingredients to be sent", hint: "Full address incl. name, street, no, postal code, city, country.." %>
-            <%= f.input :delivery_date, label: 'Delivery Date', as: :date, html5: true %>
-            <%= f.input :recipe_id, as: :hidden, html5: true, input_html: {value: @recipe.id} %>
-            <%# should implement javascript for amount_portion %>
-            <%= f.input :amount_portion, as: :hidden, html5: true, input_html: {value: 1} %>
-            <%= f.input :weekly_ingredient_list_id, as: :hidden, html5: true, input_html: {value: @weekly_ingredient_list.id} %>
-        </div>
-        <div class="form-actions">
+<%= simple_form_for [@order] do |f|%>
+<div class="container-checkout d-flex justify-content-around">
 
-        </div>
+<!-- CARD ON LEFT FOR DELIVERY LOCATION & DATE -->
+  <div class="checkout-card">
+    <div class="form-inputs">
+      <%= f.input :delivery_location, label: 'Delivery Location', placeholder: "Enter where you would like the ingredients to be sent", hint: "Full address incl. name, street, no, postal code, city, country.." %>
+      <%= f.input :delivery_date, label: 'Delivery Date', as: :date, html5: true %>
+      <%= f.input :recipe_id, as: :hidden, html5: true, input_html: {value: @recipe.id} %>
+      <%# should implement javascript for amount_portion %>
+      <%= f.input :amount_portion, as: :hidden, html5: true, input_html: {value: 1} %>
+      <%= f.input :weekly_ingredient_list_id, as: :hidden, html5: true, input_html: {value: @weekly_ingredient_list.id} %>
+      <img src="<%=image_path "delivery.svg" %>" alt="Food delivery scooter woman">
+    </div>
+  </div>
+<!-- CARD ON RIGHT FOR INGREDIENT SET ORDER -->
+  <div class="checkout-card">
+    <h3><strong>Ingredient Order</strong></h3>
+
+      <table class="checkout-table">
+        <tr>
+          <th>Ingredient Name</th>
+          <th>Unit</th>
+          <th class="amount-column">Amount</th>
+        </tr>
+        <% @weekly_ingredients.each do |wi| %>
+          <tr>
+            <td><%= wi.ingredient.name %></td>
+            <td><%= wi.ingredient.unit %></td>
+            <td class="amount-column"><%= wi.amount %></td>
+          </tr>
+        <% end %>
+        <!-- Empty row on purpose -->
+        <tr class="blank_row"><td colspan="3"></td></tr>
+
+        <tr>
+          <td colspan="2">Price (per portion): </td>
+          <td class="amount-column"><%=@recipe.weekly_ingredient_list.price_per_portion%>$</td>
+        </tr>
+        <!-- Add logic to let user increase portion amount (inline + and - button, and based on that calculate ttotal price -->
+        <tr>
+          <td colspan="2">Portions: </td>
+          <td class="amount-column"> x</td>
+        </tr>
+        <!-- Empty row on purpose -->
+        <tr class="blank_row"><td colspan="3"></td></tr>
+
+        <tr class="total-row">
+          <td colspan="2">TOTAL ORDER PRICE: </td>
+          <td class="amount-column"> xx$</td>
+        <!-- Empty row on purpose -->
+        <tr class="blank_row"><td colspan="3"></td></tr>
+        </tr>
+
+      </table>
+      <div class=confirm-order-button>
+        <%= f.button :submit, "Confirm Order", class:"btn btn-color" %>
+      </div>
+  </div>
 
 </div>
-<div class="content container-profile col-sm-12" >
-
-    <div class="column col-sm-6" style="margin-right: -300px; margin-left: 200px" >
-        <img height="250", width="250" src="<%= cl_image_path @recipe.photo.key %>" >
-        <h3><strong><%= @recipe.name %></strong></h3>
-        <h6><%= @recipe.category %></h6>
-    </div>
-    <div class="column col-sm-6">
-        <div class="card-header test1" style="background-color:#383F51; color: white; "><strong>Ingredient Confirmation</strong></div>
-            <h3><strong>Item Quantity</strong></h3>
-            <% @weekly_ingredients.each do |wi| %>
-
-            <h3><%= wi.ingredient.name %> <%= wi.amount %><%= wi.ingredient.unit %></h3>
-            <% end %>
-            <h3>Total price (per portion)<%=@recipe.weekly_ingredient_list.price_per_portion%>RMB</h3>
-            <div class="alert alert-success">
-                Successfull Ordering!
-            </div>
-            <br>
-            <%= f.button :submit, "Confirm", class:"btn btn-color" %>
-    <% end %>
-        </div>
-    </div>
-</div>
+<% end %>
