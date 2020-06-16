@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
 
   def index
     @recipes = policy_scope(Recipe)
@@ -46,6 +47,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    set_user
     @recipe = Recipe.find(params[:id])
     @order = Order.new
     authorize @recipe
@@ -79,5 +81,10 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe = Recipe.find(params[:id])
     authorize @recipe
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+    authorize @user
   end
 end
