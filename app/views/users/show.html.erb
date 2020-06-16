@@ -4,6 +4,100 @@
 </div>
 
 
+<div class="center">
+  <div class="chef-card-container">
+    <div class="p-3">
+      <div class="row">
+        <div class="column">
+          <p><strong>Name: </strong><%=@user.first_name.capitalize + ' ' + @user.last_name.capitalize  %></p>
+          <p><strong>Email: </strong><%= @user.email %></p>
+        </div>
+        <div class="column">
+          <p><strong>About me:</strong> I enjoy cooking and coding, Tacos are my speciality but I love me a good tuna salad</p>
+        </div>
+      </div>
+      <div class="pr-5 mr-5">
+        <p><strong>Address: </strong><%= @user.address %></p>
+        <p><strong>Favorite Cuisines:</strong> Tuna, Mexican</p>
+        <% if user_signed_in? && policy(@user).edit? %>
+      </div>
+      <div class="row center">
+        <div class="column">
+          <button class="btn btn-color">
+          <%= link_to 'Edit', edit_user_path(@user), class: "" %> <i class="fas fa-user-edit"></i>
+          </button>
+        </div>
+        <div class="column" >
+          <button class="btn btn-danger">
+          <%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: "" %>
+           <i class="fas fa-trash"></i>
+          </button>
+        <% end %>
+        </div>
+      </div>
+          <h4>Your Order History</h4>
+            <div>
+              <% @orders_user.each do |order| %>
+              <p>Ingedrients set: <i><b>Mexican</b></i></p>
+              <p>Portions: <%= order.amount_portion %></p>
+              <p>Delivery date: <%= order.delivery_date %></p>
+    <!-- TO-DO: Replace hard-coding and get correct weekly ingredient them from records -->
+    <!-- <p>Ingedrients set: <%#= weekly_ingredient_list.name %></p> -->
+            <% end %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<h1>Your Order History</h1>
+
+<div>
+   <% @orders_user.each do |order| %>
+    <!-- TO-DO: Replace hard-coding and get correct weekly ingredient them from records -->
+    <!-- <p>Ingedrients set: <%#= weekly_ingredient_list.name %></p> -->
+    <p>Ingedrients set: <i><b>Mexican</b></i></p>
+    <p>Portions: <%= order.amount_portion %></p>
+    <p>Delivery date: <%= order.delivery_date %></p>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
