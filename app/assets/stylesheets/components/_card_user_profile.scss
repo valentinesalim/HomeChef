@@ -31,6 +31,14 @@
   justify-content: center;
 }
 
+.row-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 1%;
+  width: 100%;
+}
+
+
 .column {
   display: flex;
   flex-direction: column;
@@ -46,4 +54,14 @@
   padding-top : 24px;
 }
 
+.center2 {
+  margin: auto;
+  width: 38%;
+  padding: 10px;
+  padding-top : 24px;
+}
+
+li:empty {
+   display: none;
+}
 

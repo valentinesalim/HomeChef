@@ -1,0 +1,18 @@
+
+
+  <div class="card child-row" style="width: 20rem; margin: 20px;">
+    <div class="card-recipe-img">
+      <% if recipe.photo.attached? %>
+        <%= link_to recipe_path(recipe) do %>
+        <%= cl_image_tag recipe.photo.key , class:"card-img-top card-recipe-img"%>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="card-body">
+      <h4 class="card-title"><strong><%= recipe.name %></strong></h4>
+      <p style="color: #8D9DA7; margin: 0px;"><%= recipe.category_list %></p>
+      <i style="color: #8D9DA7;" class="far fa-clock"> <%= recipe.serving_time %> Minutes</i>
+      <p class="card-text"><%= recipe.description_teaser%>...<%= link_to "More details", recipe_path(recipe)%></p>
+    </div>
+  </div>
