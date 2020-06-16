@@ -1,23 +1,13 @@
-<%#=simple_form_for "search", url: recipes_path, method: :get do |f|%>
-    <!-- <div class="search-form-control form-group form-inline my-2 my-lg-0" style="padding-right: 150px;">
-    <input class="form-control string required" type="text" placeholder="find recipes" name="search[query]" id="search_query" style="height: 40px;"; />
-    <button name="button" type="submit" class="btn btn-flat" style="padding-right: 150px;">
-      <i class="fas fa-search" style= "color: #D8343A; padding-top: -20px"></i>
-    </button>
-  </div> -->
-<%# end %>
-
-
 <%= form_tag recipes_path, method: :get do %>
-    <div class="search-form-control form-group" style="padding-right: 100px; height: 20px;">
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find recipe"
-      %>
-      <button name="button" type="submit" class="btn btn-flat" style="padding-right: 100px; height: 30px;">
-      <i class="fas fa-search d-flex justify-content-center"></i>
+  <div class="search-form-control form-group d-flex" style="margin: 0;" >
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find recipe"
+    %>
+    <button name="button" type="submit" class="btn btn-flat">
+      <i class="fas fa-search d-flex" style="padding-top: 3px"></i>
     </button>
+  </div>
 
-    </div>
-  <% end %>
+<% end %>
