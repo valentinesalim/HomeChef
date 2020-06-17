@@ -35,7 +35,6 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   categorisationFilter();
-  carousel();
 });
 
 import { Application } from "stimulus"

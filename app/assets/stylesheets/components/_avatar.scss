@@ -22,10 +22,11 @@
 
 
 .avatar-profile {
-  width: 164px;
-  height: 164px;
-  border-radius:50%
-
+  width: 160px;
+  height: 160px;
+  border-radius:50%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .dropdown-item {

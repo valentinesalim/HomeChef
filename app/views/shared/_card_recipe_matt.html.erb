@@ -1,22 +1,20 @@
-<% @recipes.each do |recipe| %>
-  <div class="card child-row" style="width: 20rem; margin: 10px">
+<div class="card child-row" style="width: 20rem; margin: 10px">
 
-    <div class="card-recipe-img">
-      <% if recipe.photo.attached? %>
-        <%= link_to recipe_path(recipe) do %>
-          <%= cl_image_tag recipe.photo.key , class:"card-img-top card-recipe-img"%>
-        <% end %>
+  <div class="card-recipe-img">
+    <% if recipe.photo.attached? %>
+      <%= link_to recipe_path(recipe) do %>
+        <%= cl_image_tag recipe.photo.key , class:"card-img-top card-recipe-img"%>
       <% end %>
-    </div>
-
-    <div class="card-body">
-      <h4 class="card-title"><strong><%= recipe.name %></strong></h4>
-      <p style="color: #8D9DA7; margin: 0px;"><%= recipe.category_list %></p>
-      <i style="color: #8D9DA7;" class="far fa-clock"> <%= recipe.serving_time %> Minutes</i>
-      <%= cl_image_tag recipe.user.avatar, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
-    </div>
-
+    <% end %>
   </div>
-<% end %>
+
+  <div class="card-body">
+    <h4 class="card-title"><strong><%= recipe.name %></strong></h4>
+    <p style="color: #8D9DA7; margin: 0px;"><%= recipe.category_list %></p>
+    <i style="color: #8D9DA7;" class="far fa-clock"> <%= recipe.serving_time %> Minutes</i>
+    <%= cl_image_tag recipe.user.avatar, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
+  </div>
+
+</div>
 
 
