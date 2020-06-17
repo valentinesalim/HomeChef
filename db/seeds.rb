@@ -48,6 +48,7 @@ puts "created new test user"
                     password: "123456",
                     first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name,
+                    biography: Faker::Restaurant.description,
                     address: Faker::Address.full_address
                   )
   file = URI.open('https://images.unsplash.com/photo-1588442085302-4b4536373a03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')
