@@ -1,13 +1,13 @@
 <!-- SMALL BANNER TO INTRODUCE NEXT SECTION -->
-<div class="banner-sml">
+<div class="banner-weekly" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url(<%= asset_path 'all-recipes.jpg' %>);">
   <dir class="container sub-banner">
-    <h1>Browse through our all-time recipe records</h1>
+    <h1 style="font-size: 50px;"><strong>All recipe</strong></h1>
+    <p style="font-size: 20px;"> cook anything you want </p>
   </dir>
 </div>
 
 <div id="recipe_index" class="container d-flex">
-  <div class="">
-    <h1>Recipes</h1>
+  <div class="recipe-index-card">
     <%= simple_form_for :filter, html: {id:"filter-recipes", "data-controller":"index-form"}, url: recipes_path, method: "GET", remote: true do |f| %>
           <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes, onClick: "test"%>
           <%= f.input :levels, label: "Level", collection: $levels, as: :check_boxes  %>

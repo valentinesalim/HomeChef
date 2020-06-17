@@ -6,7 +6,7 @@
   </dir>
 </div>
 
-<%= simple_form_for [@order] do |f|%>
+<%= simple_form_for @order, html: {"data-controller":"order-form"} do |f|%>
 <div class="container-checkout d-flex justify-content-around">
 
 <!-- CARD ON LEFT FOR DELIVERY LOCATION & DATE -->
@@ -15,9 +15,9 @@
       <%= f.input :delivery_location, label: 'Delivery Location', placeholder: "Enter where you would like the ingredients to be sent", hint: "Full address incl. name, street, no, postal code, city, country.." %>
       <%= f.input :delivery_date, label: 'Delivery Date', as: :date, html5: true %>
       <%= f.input :recipe_id, as: :hidden, html5: true, input_html: {value: @recipe.id} %>
-      <%# should implement javascript for amount_portion %>
-      <%= f.input :amount_portion, as: :hidden, html5: true, input_html: {value: 1} %>
       <%= f.input :weekly_ingredient_list_id, as: :hidden, html5: true, input_html: {value: @weekly_ingredient_list.id} %>
+      <%=f.input :amount_portion, as: :hidden, input_html: {class:"order-amount", id:"hidden_amount_portion", value: 1}, wrapper: false, label: false, disabled: true %>
+      <%=f.input :total_order_price, as: :hidden, input_html: {class:"order-total", id:"hidden-order-total-price", value: 0}, wrapper: false, label: false, disabled: true %>
       <img src="<%=image_path "delivery.svg" %>" alt="Food delivery scooter woman">
     </div>
   </div>
@@ -42,20 +42,30 @@
         <tr class="blank_row"><td colspan="3"></td></tr>
 
         <tr>
-          <td colspan="2">Price (per portion): </td>
-          <td class="amount-column"><%=@recipe.weekly_ingredient_list.price_per_portion%>$</td>
+          <td>Price (per portion): </td>
+          <td>$</td>
+          <td class="amount-column" id="price_per_portion"><%= @recipe.weekly_ingredient_list.price_per_portion %></td>
         </tr>
-        <!-- Add logic to let user increase portion amount (inline + and - button, and based on that calculate ttotal price -->
+
         <tr>
-          <td colspan="2">Portions: </td>
-          <td class="amount-column"> x</td>
+          <td>Portions: </td>
+          <td>number </td>
+          <td class="amount-column">
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="toggle-icon" id="minus-btn"><img src="<%=image_path "minus.png" %>" alt="minus button" style="height: 16px"></div>
+              <div id="input_amount_portion">1</div>
+              <div class="toggle-icon" id="plus-btn"><img src="<%=image_path "plus.png" %>" alt="minus button" style="height: 16px"></div>
+            </div>
+          </td>
         </tr>
         <!-- Empty row on purpose -->
         <tr class="blank_row"><td colspan="3"></td></tr>
 
         <tr class="total-row">
-          <td colspan="2">TOTAL ORDER PRICE: </td>
-          <td class="amount-column"> xx$</td>
+          <td>TOTAL ORDER PRICE: </td>
+          <td>$</td>
+          <td class="amount-column" id="total-price"><%= @recipe.weekly_ingredient_list.price_per_portion %></td>
+
         <!-- Empty row on purpose -->
         <tr class="blank_row"><td colspan="3"></td></tr>
         </tr>
@@ -68,3 +78,5 @@
 
 </div>
 <% end %>
+
+<%= javascript_pack_tag 'order-calculation' %>
