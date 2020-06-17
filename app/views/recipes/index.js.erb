@@ -3,11 +3,19 @@ console.log('Test: Hello from index.js.erb')
 function replaceRecipes (innerHTML) {
   const recipes = document.getElementById('recipes');
   recipes.innerHTML = innerHTML;
+  console.log("innerHTML", innerHTML)
+  let noResultMessage = document.getElementById("no-result-msg")
+  if (innerHTML.length > 0){
+    noResultMessage.classList.add("invisible")
+  } else {
+    noResultMessage.classList.remove("invisible")
+  }
 }
-
 if ('<%= @filter %>' === "[]") {
-  replaceRecipes("<%= j render 'shared/card_recipe_matt', recipes: Recipe.all %>");
+  replaceRecipes("<%= j render 'recipes/recipe_list', recipes: Recipe.all %>");
+
 }
 else {
-  replaceRecipes("<%= j render 'shared/card_recipe_matt', recipes: @recipes %>");
+  replaceRecipes("<%= j render 'recipes/recipe_list', recipes: @recipes %>");
 }
+

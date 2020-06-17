@@ -16,9 +16,11 @@
   </div>
 
   <div id="recipes" class="cards">
-    <% @recipes.each do | recipe | %>
-    <%= render 'shared/card_recipe_matt', recipe: recipe %>
-    <% end %>
+    <%= render "recipe_list", recipes: @recipes %>
+  </div>
+  <div class="<%='invisible' if @recipes.any? %> align-error-msg" id="no-result-msg">
+    <h4>Sorry, the item you are searching for cannot be found</h4>
+
   </div>
 </div>
 
