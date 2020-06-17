@@ -5,13 +5,13 @@
 </div>
 
 <div class="container d-flex">
-  <div>
-    <h1 class="my-3" ><%= @recipe.name %></h1>
-    <p class="category-text"><%= @recipe.category_list %></p>
-    <h3 class="my-1">Description </h3>
+  <div style="margin-left: 20px;">
+    <h1><b><%= @recipe.name %></b></h1>
+    <p><%= @recipe.category_list %></p>
+    <h3>Description </h3>
     <p><%= @recipe.description %><p>
     <div class="center">
-      <%= render "shared/card_user_profile" %>
+      <%= render "shared/card_user_profile_on_recipe" %>
     </div>
 
   </div>

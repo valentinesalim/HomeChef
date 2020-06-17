@@ -1,7 +1,23 @@
 .btn-color {
-    background-color: #4a4e50;
+    background-color: hsl(200, 4%, 30%);
     color: white;
     border-radius: 10px;
+}
+
+.btn-banner {
+    background-color: #D8343A;
+    
+    border-radius: 10px;
+    padding: 8px 10px;
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+    }
+}
+.btn-banner:hover {
+    background-color: #e4565b;
 }
 
 .btn-grey {

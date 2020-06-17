@@ -2,9 +2,10 @@ class WeeklyIngredientListsController < ApplicationController
 
   def index
     @weekly_ingredient_lists = WeeklyIngredientList.all
-    authorize @weekly_ingredient_list
+    authorize @weekly_ingredient_lists
     @ingredients = Ingredient.all
     @weekly_ingredients = WeeklyIngredient.all
+    authorize @weekly_ingredients
     # FOR DEMO PURPOSES WE WILL ONLY HAVE ONE LIST OF THAT WEEK
     # FUTURE -> make sure only this week's list is displayed
   end
