@@ -1,0 +1,20 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class=""><%= order.weekly_ingredient_list.menu_name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= order.weekly_ingredient_list.date.strftime("%a, %e, %B, %Y") %></h6>
+    <p class="card-text">
+      <% order.weekly_ingredients.each do | wi |%>
+        <p>
+          <%= wi.ingredient.name %>, <%= wi.amount %> <%= wi.ingredient.unit %>
+          <%= order.total_order_price %>
+        </p>
+      <% end %>
+    </p>
+
+  </div>
+</div>
+
+
+
+
+
