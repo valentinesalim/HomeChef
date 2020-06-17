@@ -1,8 +1,9 @@
 
 <!-- PAGE HEADER -->
-<div class="banner-sml">
-  <dir class="container sub-banner">
-    <h1>Confirm your order</h1>
+<div class="banner-checkout">
+  <dir class="container sub-banner" style="background: #383F51">
+    <h1 style="font-size: 50px;"><strong>Confirm Your Order</strong></h1>
+    <p style="font-size: 20px;">Enter your delivery location and desired delivery date. Then choose the amount of ingredient portions and confirm your order.</p>
   </dir>
 </div>
 
@@ -15,9 +16,9 @@
       <%= f.input :delivery_location, label: 'Delivery Location', placeholder: "Enter where you would like the ingredients to be sent", hint: "Full address incl. name, street, no, postal code, city, country.." %>
       <%= f.input :delivery_date, label: 'Delivery Date', as: :date, html5: true %>
       <%= f.input :recipe_id, as: :hidden, html5: true, input_html: {value: @recipe.id} %>
-      <%= f.input :weekly_ingredient_list_id, as: :hidden, html5: true, input_html: {value: @weekly_ingredient_list.id} %>
-      <%=f.input :amount_portion, as: :hidden, input_html: {class:"order-amount", id:"hidden_amount_portion", value: 1}, wrapper: false, label: false, disabled: true %>
-      <%=f.input :total_order_price, as: :hidden, input_html: {class:"order-total", id:"hidden-order-total-price", value: 0}, wrapper: false, label: false, disabled: true %>
+      <%= f.input :weekly_ingredient_list_id, as: :hidden, html5: true, input_html: {value: @recipe.weekly_ingredient_list.id} %>
+      <%= f.input :amount_portion, as: :hidden, input_html: {id:"hidden_amount_portion", value: 1}, wrapper: false, label: false%>
+      <%= f.input :total_order_price, as: :hidden, input_html: {class:"order-total", id:"hidden-order-total-price", value: 0}, wrapper: false, label: false%>
       <img src="<%=image_path "delivery.svg" %>" alt="Food delivery scooter woman">
     </div>
   </div>
