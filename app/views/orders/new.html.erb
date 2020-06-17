@@ -1,82 +1,63 @@
-
-<!-- PAGE HEADER -->
-<div class="banner-checkout">
-  <dir class="container sub-banner" style="background: #383F51">
-    <h1 style="font-size: 50px;"><strong>Confirm Your Order</strong></h1>
-    <p style="font-size: 20px;">Test: Enter your delivery location and desired delivery date. Then choose the amount of ingredient portions and confirm your order.</p>
-  </dir>
-</div>
-
 <%= simple_form_for @order, html: {"data-controller":"order-form"} do |f|%>
 <div class="container-checkout d-flex justify-content-around">
-
+  
 <!-- CARD ON LEFT FOR DELIVERY LOCATION & DATE -->
-  <div class="checkout-card">
-    <div class="form-inputs">
-      <%= f.input :delivery_location, label: 'Delivery Location', placeholder: "Enter where you would like the ingredients to be sent", hint: "Full address incl. name, street, no, postal code, city, country.." %>
-      <%= f.input :delivery_date, label: 'Delivery Date', as: :date, html5: true %>
+    
+    <div class="form-inputs" style="margin-top: 100px;">
+      <p> Cart > Information > Shipping </p>
+      <hr>
+      <b><%= f.input :delivery_location, label: 'Delivery Location', placeholder: "Enter your address", hint: " Full address incl. name, street, no, postal code, city, country.." %></b>
+      <b><%= f.input :delivery_date, label: 'Delivery Date', as: :date, html5: true %></b>
       <%= f.input :recipe_id, as: :hidden, html5: true, input_html: {value: @recipe.id} %>
       <%= f.input :weekly_ingredient_list_id, as: :hidden, html5: true, input_html: {value: @recipe.weekly_ingredient_list.id} %>
       <%= f.input :amount_portion, as: :hidden, input_html: {id:"hidden_amount_portion", value: 1}, wrapper: false, label: false%>
       <%= f.input :total_order_price, as: :hidden, input_html: {class:"order-total", id:"hidden-order-total-price", value: 0}, wrapper: false, label: false%>
-      <img src="<%=image_path "delivery.svg" %>" alt="Food delivery scooter woman">
     </div>
-  </div>
 <!-- CARD ON RIGHT FOR INGREDIENT SET ORDER -->
   <div class="checkout-card">
-    <h3><strong>Ingredient Order</strong></h3>
-
+    <h3><strong>Your ingredients cart</strong></h3>
+    <hr>
       <table class="checkout-table">
         <tr>
           <th>Ingredient Name</th>
-          <th>Unit</th>
-          <th class="amount-column">Amount</th>
+          <th>Amount</th>
+          <th class="amount-column">Unit</th>
         </tr>
         <% @weekly_ingredients.each do |wi| %>
           <tr>
             <td><%= wi.ingredient.name %></td>
-            <td><%= wi.ingredient.unit %></td>
-            <td class="amount-column"><%= wi.amount %></td>
+            <td><%= wi.amount %></td>
+            <td class="amount-column"><%= wi.ingredient.unit %></td>
+            
           </tr>
         <% end %>
         <!-- Empty row on purpose -->
         <tr class="blank_row"><td colspan="3"></td></tr>
-
-        <tr>
-          <td>Price (per portion): </td>
-          <td>$</td>
-          <td class="amount-column" id="price_per_portion"><%= @recipe.weekly_ingredient_list.price_per_portion %></td>
-        </tr>
-
-        <tr>
-          <td>Portions: </td>
-          <td>number </td>
-          <td class="amount-column">
-            <div class="d-flex justify-content-center align-items-center">
-              <div class="toggle-icon" id="minus-btn"><img src="<%=image_path "minus.png" %>" alt="minus button" style="height: 16px"></div>
-              <div id="input_amount_portion">1</div>
-              <div class="toggle-icon" id="plus-btn"><img src="<%=image_path "plus.png" %>" alt="minus button" style="height: 16px"></div>
-            </div>
-          </td>
-        </tr>
-        <!-- Empty row on purpose -->
-        <tr class="blank_row"><td colspan="3"></td></tr>
-
-        <tr class="total-row">
-          <td>TOTAL ORDER PRICE: </td>
-          <td>$</td>
-          <td class="amount-column" id="total-price"><%= @recipe.weekly_ingredient_list.price_per_portion %></td>
-
-        <!-- Empty row on purpose -->
-        <tr class="blank_row"><td colspan="3"></td></tr>
-        </tr>
-
+          <tr style="border-bottom: 2px solid grey;">
+            <td><b>Price (per portion): </b></td>
+            <td class="amount-column" id="price_per_portion"><%= @recipe.weekly_ingredient_list.price_per_portion %>$</td>
+            
+          </tr>
+          <tr>
+            <td><b>Portions: </b></td>
+            <td class="amount-column">
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="toggle-icon" id="minus-btn"><img src="<%=image_path "minus.png" %>" alt="minus button" style="height: 16px"></div>
+                <div id="input_amount_portion">1</div>
+                <div class="toggle-icon" id="plus-btn"><img src="<%=image_path "plus.png" %>" alt="minus button" style="height: 16px"></div>
+              </div>
+            </td>
+          </tr>
+          <tr class="total-row">
+            <td>Total: </td>
+            <td class="amount-column" id="total-price"><%= @recipe.weekly_ingredient_list.price_per_portion %><td> $ </td></td>
+          </tr>
       </table>
-      <div class=confirm-order-button>
+      <div class="confirm-order-button" style="margin-top: 10px;">
         <%= f.button :submit, "Confirm Order", class:"btn btn-color" %>
       </div>
   </div>
-
+  
 </div>
 <% end %>
 

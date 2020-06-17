@@ -4,6 +4,14 @@
     border-radius: 10px;
 }
 
+.btn-edit {
+    background-color: #4a4e50;
+    color: white;
+    border-radius: 8px;
+    margin: 8px;
+    font-weight: bold;
+}
+
 .btn-banner {
     background-color: #D8343A;
     
@@ -17,13 +25,22 @@
     }
 }
 .btn-banner:hover {
-    background-color: #e4565b;
+    background-color: #bd2e33;
 }
 
 .btn-grey {
     background-color: #4a4e50;
     color: white;
     border-radius: 10px;
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.btn-grey:hover {
+    background-color: #7f8181;
 }
 
 .btn-color:hover {
