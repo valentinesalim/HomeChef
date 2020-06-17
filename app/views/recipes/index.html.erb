@@ -16,7 +16,9 @@
   </div>
 
   <div id="recipes" class="cards">
-    <%= render 'shared/card_recipe_matt', recipes: @recipes %>
+    <% @recipes.each do | recipe | %>
+    <%= render 'shared/card_recipe_matt', recipe: recipe %>
+    <% end %>
   </div>
 </div>
 
