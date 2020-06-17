@@ -35,10 +35,10 @@
 
 <!-- CONTAINER FOR RECIPE CARDS OF THIS WEEK -->
 
-<div class="container-recipe-home">
-  <div class="row">
+<div id="recipes" class="cards" style="margin-left: 75px;">
     <% if @recipe.created_this_week? %>
-      <%= render 'shared/card_recipe_matt', recipes: @recipes %>
+      <% @recipes.take(8).each do |recipe| %>
+      <%= render 'shared/card_recipe_matt', recipe: recipe %>
+      <% end %>
     <% end %>
-  </div>
 </div>
