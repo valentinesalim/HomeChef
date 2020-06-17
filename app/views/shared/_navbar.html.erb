@@ -5,11 +5,11 @@
   <%= link_to root_path, class: "logo" do %>
     <%= image_tag "logo.png" %>
   <% end %>
-  <%= render 'shared/search' %>
-  <div class="links-container">
-    <%= link_to "This Week", weekly_ingredient_list_path(1), class: "navbar-link" %>
+  <div class="navbar-search"> <%= render 'shared/search' %></div>
+  <div class="links-container" style="padding-left: 300px">
+    <%= link_to "Weekly Menu", weekly_ingredient_list_path(1), class: "navbar-link" %>
     <%= link_to "Recipes", recipes_path, class: "navbar-link" %>
-  </div>  
+  </div>
   <div class="avatar-container">
     <% if user_signed_in? %>
       <div class="dropdown">
