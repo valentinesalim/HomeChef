@@ -4,4 +4,6 @@ class Order < ApplicationRecord
 
   validates :delivery_date, :delivery_location, :amount_portion, :total_order_price, presence: true
 
+  delegate :weekly_ingredients, to: :weekly_ingredient_list
+
 end

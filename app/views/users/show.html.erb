@@ -14,7 +14,7 @@
 <%= render "shared/sub_banner", title: "My Orders", img:"https://d1ralsognjng37.cloudfront.net/22595732-ef37-4ab1-bea2-7fb996b87910.jpeg"%>
 <div class="container profile-recipe-container-flex">
  <% @orders_user.each do | order | %>
-  order
+   <%= render partial: "shared/ingredients_order_card", locals: { order: order } %>
  <% end %>
 </div>
 
