@@ -29,6 +29,9 @@ class Recipe < ApplicationRecord
   has_many :done_recipes, dependent: :destroy
   has_many :ratings, through: :done_recipes
 
+  has_many :favorite_recipes
+  has_many :favorited_by, through: :favorite_recipes, source: :user
+
   has_one_attached :photo
 
   validates :name, :description, :serving_time, :photo, :video, presence: true

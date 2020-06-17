@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_one_attached :photo
 
+  has_many :favorite_recipes
+  has_many :favorites, through: :favorite_recipes, source: :recipe
+
 
   validates :first_name, :last_name, presence: true
 

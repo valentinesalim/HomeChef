@@ -1,0 +1,31 @@
+<!-- SECTION HEADER: FAVORITES OF THIS WEEK -->
+<div class="banner-cookbook">
+  <dir class="container sub-banner" style="background: #383F51">
+    <h1 style="font-size: 50px;"><strong>My CookBook: This Week</strong></h1>
+    <p style="font-size: 20px;">Your saved recipes related to this week's ingredient menu</p>
+  </dir>
+</div>
+
+<div id="recipes" class="cards" style="margin-left: 75px;">
+  <% if @recipe.created_this_week? %>
+    <% @recipes.each do |recipe| %>
+    <%= render 'shared/card_recipe_favorite', recipe: recipe %>
+    <% end %> <!-- ending recipe iteration -->
+
+</div>
+
+
+<!-- SECTION HEADER: Previous/All-time favorites -->
+<div class="banner-cookbook">
+  <dir class="container sub-banner" style="background: #383F51">
+    <h1 style="font-size: 50px;"><strong>My CookBook: All-time Favorites</strong></h1>
+    <p style="font-size: 20px;">Your previously saved recipes</p>
+  </dir>
+</div>
+
+  <% else %>
+    <% @recipes.each do |recipe| %>
+      <%= render 'shared/card_recipe_favorite', recipe: recipe %>
+    <% end %> <!-- ending recipe iteration -->
+
+  <% end %> <!-- ending if (further above)/else (here above) conditions -->

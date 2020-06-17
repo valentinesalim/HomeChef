@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :favorite]
 
   def index
     @recipes = policy_scope(Recipe)
@@ -55,21 +55,34 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.update(recipe_params)
     redirect_to recipes_path
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
+  end
+
+  def favorite
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << @recipe
+      redirect_to @recipe, notice: "You added #{@recipe.name} to your cookbook"
+
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@recipe)
+      redirect_to @recipe, notice: "You removed #{@recipe.name} from your cookbook"
+
+    else
+      # Type missing, nothing happens
+      redirect_to @recipe, notice: 'Nothing happened.'
+    end
   end
 
   private

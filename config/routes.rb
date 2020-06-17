@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :comments
     resources :ratings
+    resources :favorite_recipes
+    put :favorite, on: :member #NOTE: to add favorite_recipe_path(@recipe)
   end
 
   resources :orders, only: [:index, :new, :create, :show]
@@ -12,8 +14,6 @@ Rails.application.routes.draw do
   resources :ingredients
 
   resources :weekly_ingredient_lists
-
-  resources :my_cookbooks, only: [:show]
 
   resources :users
 
