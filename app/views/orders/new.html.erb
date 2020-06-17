@@ -16,6 +16,8 @@
       <%= f.input :delivery_date, label: 'Delivery Date', as: :date, html5: true %>
       <%= f.input :recipe_id, as: :hidden, html5: true, input_html: {value: @recipe.id} %>
       <%= f.input :weekly_ingredient_list_id, as: :hidden, html5: true, input_html: {value: @weekly_ingredient_list.id} %>
+      <%=f.input :amount_portion, as: :hidden, input_html: {class:"order-amount", id:"hidden_amount_portion", value: 1}, wrapper: false, label: false, disabled: true %>
+      <%=f.input :total_order_price, as: :hidden, input_html: {class:"order-total", id:"hidden-order-total-price", value: 0}, wrapper: false, label: false, disabled: true %>
       <img src="<%=image_path "delivery.svg" %>" alt="Food delivery scooter woman">
     </div>
   </div>
@@ -42,19 +44,17 @@
         <tr>
           <td>Price (per portion): </td>
           <td>$</td>
-          <td class="amount-column" id="price_per_portion" data-portion-price="<%= @recipe.weekly_ingredient_list.price_per_portion %>"><%= @recipe.weekly_ingredient_list.price_per_portion %></td>
+          <td class="amount-column" id="price_per_portion"><%= @recipe.weekly_ingredient_list.price_per_portion %></td>
         </tr>
-
-        id="price_per_portion"
 
         <tr>
           <td>Portions: </td>
           <td>number </td>
           <td class="amount-column">
             <div class="d-flex justify-content-center align-items-center">
-              <div class="toggle-icon" id="order-amount-minus-btn">-</div>
-              <%=f.input :amount_portion, input_html: {class:"order-amount", id:"order_amount_portion", value: 1}, wrapper: false, label: false, disabled: true %>
-              <div class="toggle-icon" id="order-amount-plus-btn">+</div>
+              <div class="toggle-icon" id="minus-btn"><img src="<%=image_path "minus.png" %>" alt="minus button" style="height: 16px"></div>
+              <div id="input_amount_portion">1</div>
+              <div class="toggle-icon" id="plus-btn"><img src="<%=image_path "plus.png" %>" alt="minus button" style="height: 16px"></div>
             </div>
           </td>
         </tr>
@@ -64,14 +64,8 @@
         <tr class="total-row">
           <td>TOTAL ORDER PRICE: </td>
           <td>$</td>
-          <!-- TO BE IMPLEMENTED with JS:
-          total_price = @recipe.weekly_ingredient_list.price_per_portion * @recipe.amount -->
-          <td>
-            <div class="d-flex justify-content-center align-items-center">
-              <%=f.input :total_order_price, input_html: {class:"order-total", id:"order-total-price", value:"tbd", onchange:"orderTotalCalculation(this.value)" }, wrapper: false, label: false, disabled: true %>
-            </div>
-          </td>
-         <!-- <td class="amount-column"> xx$</td> -->
+          <td class="amount-column" id="total-price"><%= @recipe.weekly_ingredient_list.price_per_portion %></td>
+
         <!-- Empty row on purpose -->
         <tr class="blank_row"><td colspan="3"></td></tr>
         </tr>
@@ -85,5 +79,4 @@
 </div>
 <% end %>
 
-<%= javascript_pack_tag 'order-portion-amount' %>
-<%= javascript_pack_tag 'order-total' %>
+<%= javascript_pack_tag 'order-calculation' %>
