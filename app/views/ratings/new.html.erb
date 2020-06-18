@@ -1,0 +1,9 @@
+<%= simple_form_for [@done_recipe, @rating] do |r| %>
+    <div class="form-inputs">
+        <%= r.input :star %>
+        <%= r.input :content %>
+    </div>
+    <div class="form-actions">
+        <%= r.submit :submit, class:"btn btn-danger" %>
+    </div>
+<% end %>

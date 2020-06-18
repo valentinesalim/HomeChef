@@ -50,4 +50,7 @@ class Recipe < ApplicationRecord
     Recipe.where(:created_at => start_week..end_week)
   end
 
+  def done_recipe_by(user)
+    DoneRecipe.find_by(user: user, recipe: self)
+  end
 end

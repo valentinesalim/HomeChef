@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :recipes do
     resources :comments
-    resources :ratings
   end
 
   resources :orders, only: [:index, :new, :create, :show]
@@ -16,5 +15,8 @@ Rails.application.routes.draw do
   resources :my_cookbooks, only: [:show]
 
   resources :users
+  resources :done_recipes, only: [:create] do
+    resources :ratings, only: [:create, :new]
+  end
 
 end
