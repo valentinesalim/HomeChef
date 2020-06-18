@@ -1,22 +1,20 @@
 <!-- SECTION HEADER: FAVORITES OF THIS WEEK -->
-<div class="banner-cookbook">
-  <dir class="container sub-banner" style="background: #383F51">
-    <h1 style="font-size: 50px;"><strong>My CookBook: This Week</strong></h1>
-    <p style="font-size: 20px;">Your saved recipes related to this week's ingredient menu</p>
-  </dir>
+<div class="banner-weekly" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url(<%= asset_path 'all-recipes.jpg' %>);">
+  <div class="container">
+    <h1>My cookbook</h1>
+    <p> Store and manage your favorite recipes online. </p>
+  </div>
 </div>
 
-<div id="recipes" class="cards" style="margin-left: 75px;">
-
+<div class="container my-5 grid-3">
   <% @favorite_recipes_of_this_week.each do |recipe| %>
-    <%= render 'shared/card_recipe_favorite', recipe: recipe %>
+    <%= render 'shared/card_recipe_home', recipe: recipe %>
   <% end %> <!-- ending recipe iteration -->
-
 </div>
 
 
 <!-- SECTION HEADER: Previous/All-time favorites -->
-<div class="banner-cookbook">
+<%# <div class="banner-cookbook">
   <dir class="container sub-banner" style="background: #383F51">
     <h1 style="font-size: 50px;"><strong>My CookBook: All-time Favorites</strong></h1>
     <p style="font-size: 20px;">Your previously saved recipes</p>
@@ -26,7 +24,7 @@
 <div id="recipes" class="cards" style="margin-left: 75px;">
 
   <% @favorite_recipes_before_this_week.each do |recipe| %>
-    <%= render 'shared/card_recipe_favorite', recipe: recipe %>
-  <% end %> <!-- ending recipe iteration -->
+    <%#= render 'shared/card_recipe_favorite', recipe: recipe %>
+  <%# end %> <!-- ending recipe iteration -->
 
-</div>
+<%# </div>  %>

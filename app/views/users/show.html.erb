@@ -2,18 +2,20 @@
   <%= render "shared/card_user_profile" %>
 </div>
 
-<%= render "shared/sub_banner", title: "My Uploads", img:"https://images.unsplash.com/photo-1545216560-68430ad77342?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1702&q=80"%>
-<div class="container profile-recipe-container-flex">
- <% @recipes_user.each do | recipe | %>
-  <%=  render "shared/card_recipe_matt", recipe: recipe %>
- <% end %>
+<div class="container">
+  <h2>My Uploads </h2>
+  <div class="grid-3 my-3">
+    <% @recipes_user.each do | recipe | %>
+    <%=  render "shared/card_recipe_matt", recipe: recipe %>
+    <% end %>
+  </div>
 </div>
 
-
-
-<%= render "shared/sub_banner", title: "My Orders", img:"https://d1ralsognjng37.cloudfront.net/22595732-ef37-4ab1-bea2-7fb996b87910.jpeg"%>
-<div class="container profile-recipe-container-flex">
- <% @orders_user.each do | order | %>
-   <%= render partial: "shared/ingredients_order_card", locals: { order: order } %>
- <% end %>
+<div class="container">
+  <h2>My Orders </h2>
+  <div class="grid-3 my-3">
+    <% @orders_user.each do | order | %>
+      <%= render partial: "shared/ingredients_order_card", locals: { order: order } %>
+    <% end %>
+  </div>
 </div>
