@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :favorite]
 
   def index
     @recipes = policy_scope(Recipe)
@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     authorize @recipe
     @recipe.user = current_user
-    @weekly_ingredient_list = WeeklyIngredientList.find_by(date: Date.today.beginning_of_week)
+    @weekly_ingredient_list = WeeklyIngredientList.this_week
     @recipe.weekly_ingredient_list = @weekly_ingredient_list
 
     youtube_id = YoutubeID.from(@recipe.video)
@@ -55,18 +55,15 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.update(recipe_params)
     redirect_to recipes_path
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe was successfully deleted.'

@@ -7,13 +7,13 @@ Rails.application.routes.draw do
     resources :ratings
   end
 
+  resources :favorite_recipes, only: [ :index, :create, :destroy ]
+
   resources :orders, only: [:index, :new, :create, :show]
 
   resources :ingredients
 
   resources :weekly_ingredient_lists
-
-  resources :my_cookbooks, only: [:show]
 
   resources :users
 

@@ -11,22 +11,17 @@ class OrdersController < ApplicationController
     @order = Order.new
     authorize @order
     @order.user = current_user
-    @recipe = Recipe.find(params[:recipe_id])
-    @ingredients = Ingredient.all
-    @weekly_ingredient_list = @recipe.weekly_ingredient_list
+    @weekly_ingredient_list = Recipe.find_by(id: params[:recipe_id])&.weekly_ingredient_list || WeeklyIngredientList.find(params[:weekly_ingredient_list_id])
     @weekly_ingredients = @weekly_ingredient_list.weekly_ingredients
-    @order.weekly_ingredient_list = @recipe.weekly_ingredient_list
+    @order.weekly_ingredient_list = @weekly_ingredient_list
   end
 
   def create
     @order = Order.new(order_params)
     authorize @order
     @order.user = current_user
-    @recipe = Recipe.find(params[:order][:recipe_id])
-    @order.weekly_ingredient_list = @recipe.weekly_ingredient_list
     @weekly_ingredient_list = @order.weekly_ingredient_list
     @weekly_ingredients = @weekly_ingredient_list.weekly_ingredients
-    @ingredients = Ingredient.all
     if @order.save
       redirect_to user_path(current_user.id)
     else
