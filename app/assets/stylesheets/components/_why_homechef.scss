@@ -1,25 +1,31 @@
-
-
 .card-why {
-    width: 350px;
-    border-radius: 10px;
+    max-width: 288px;
+    border-radius: 4px;
     box-shadow: 0 0 2px #4e4d4d;
     text-align: center;
-    padding: 10px;
-    margin-right: 70px;
+    padding: 16px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
 }
-  
+
+
 .card-why img {
-    height: 200px;
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
 }
-  
+
 .card-why h3 {
     color: #4a4e50;
     font-size: 25px;
     font-weight: 600;
     margin-top: 20px;
 }
-  
+
 .card-why p{
     font-size: 16px;
     font-weight: 300;
@@ -35,8 +41,8 @@
     font-size: 20px;
     color: #383F51;
     font-weight: bolder;
-    text-align: center; 
-    
+    text-align: center;
+
 }
 
 
@@ -65,28 +71,28 @@
       grid-template-columns: 1fr;
     }
   }
-  
+
   // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
     .cards-why-container {
       grid-template-columns: 1fr;
     }
 }
-  
+
   // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
     .cards-why-container {
       grid-template-columns: 1fr 1fr;
     }
 }
-  
+
   // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
     .cards-why-container {
       grid-template-columns: 1fr 1fr 1fr;
     }
 }
-  
+
   // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
     .cards-why-container {
