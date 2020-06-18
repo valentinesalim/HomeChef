@@ -48,5 +48,8 @@ class Recipe < ApplicationRecord
     FavoriteRecipe.find_by(recipe: self, user: user)
   end
 
+  def done_recipe_by(user)
+    DoneRecipe.find_by(user: user, recipe: self)
+  end
 
 end
