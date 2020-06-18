@@ -60,7 +60,7 @@ class RecipesController < ApplicationController
   def update
     authorize @recipe
     @recipe.update(recipe_params)
-    redirect_to recipes_path
+    redirect_to @recipe, notice: 'Recipe was successfully updated.'
   end
 
   def destroy

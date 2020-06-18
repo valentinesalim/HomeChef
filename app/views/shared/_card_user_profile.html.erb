@@ -2,7 +2,7 @@
   <img class="avatar-profile" src="<%= @user.photo.attached? ? (cl_image_path @user.photo.key) : (image_path "defaultprofile.png")%>" >
   <div class="info-container">
     <h4><strong><%= @user.first_name.capitalize + " " + @user.last_name.capitalize %></strong></h4>
-    <p><strong> Biography:   </strong><%=@user.biography %></p>
+    <p><strong> Biography:   </strong><%= @user.biography.present? ? (@user.biography) : ("Passionate chef who loves to share his creations and enable others to cook") %></p>
     <p><strong>Email:  </strong><%=@user.email %></p>
     <p><strong>Address:   </strong><%=@user.address %></p>
   </div>

@@ -37,7 +37,7 @@ puts "weekly ingredient list created ->"
 
 puts "-> now creating new users incl. their own recipes"
 # USER
-test_user = User.new(email: "tester@lewagon.com", first_name: "Chef", last_name: "User", password: "123456", address: "123 Le Wagon Avenue, 410 Shenzhen, CHINA")
+test_user = User.new(email: "tester@lewagon.com", first_name: "Chef", last_name: "User", password: "123456", address: "123 Le Wagon Avenue, 410 Shenzhen, CHINA", :biography "German chef passionate about Greek food")
 file = URI.open('https://images.unsplash.com/photo-1588442085302-4b4536373a03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')
 test_user.photo.attach(io: file, filename: 'avatar.png', content_type: 'image/png')
 test_user.save!
