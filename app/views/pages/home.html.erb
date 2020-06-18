@@ -29,7 +29,9 @@
 
 
 <div class="container grid-2">
-  <%= render 'shared/card_recipe_home', recipes: @recipes %>
+  <% @recipes.take(8).each do |recipe| %>
+    <%= render 'shared/card_recipe_home', recipe: recipe %>
+  <% end %>
 </div>
 
 

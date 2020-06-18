@@ -1,6 +1,6 @@
 <!-- BIG BANNER WITH PAGE INTRO -->
 <div class="banner-weekly" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url(<%= asset_path 'weekly-banner.jpg' %>);">
-  <div class="container sub-banner" >
+  <div class="container" >
     <% if @weekly_ingredient_list.this_week? %>
       <h1><strong>Menu of the week: </strong><i><%= @weekly_ingredient_list.menu_name %></i></h1>
       <p><%= @weekly_ingredient_list.date.at_beginning_of_week.strftime("%A %e %B %Y") %> - <%= (@weekly_ingredient_list.date.at_beginning_of_week + 6.days).strftime("%A %e %B %Y") %> </p>
@@ -9,36 +9,36 @@
 </div>
 
 <!-- CONTAINER FOR WEEK'S INGREDIENTS DISPLAY & ORDER BUTTON -->
-<div class="weekly-recipe-info-card my-3">
-  <h3> Weekly Ingredients </h3>
-  <div class="weekly-content" >
-    <% @weekly_ingredients.each do |wi| %>
-      <ul class="list-inline">
-        <li><%= cl_image_tag wi.ingredient.photo.key, height: 100, width: 100, radius: :max, crop: :fill if wi.ingredient.photo.attached?%></li>
-        <h4><%= wi.ingredient.name %></h4>
-        <h4><%= wi.amount %> - <%= wi.ingredient.unit %></h4>
-      </ul>
-    <% end %>
+<div class="container">
+  <div class="weekly-recipe-info-card my-3">
+    <h3> Weekly Ingredients </h3>
+    <div class="weekly-content" >
+      <% @weekly_ingredients.each do |wi| %>
+        <ul class="list-inline">
+          <li><%= cl_image_tag wi.ingredient.photo.key, height: 100, width: 100, radius: :max, crop: :fill if wi.ingredient.photo.attached?%></li>
+          <h4><%= wi.ingredient.name %></h4>
+          <h4><%= wi.amount %> - <%= wi.ingredient.unit %></h4>
+        </ul>
+      <% end %>
+    </div>
+    <%= link_to 'Buy Ingredient Set', new_order_path(weekly_ingredient_list_id: @weekly_ingredient_list.id), class: "btn btn-grey"%>
   </div>
-  <%= link_to 'Buy Ingredient Set', new_order_path(weekly_ingredient_list_id: @weekly_ingredient_list.id), class: "btn btn-grey"%>
 </div>
 
 
 
 <!-- SMALL BANNER TO INTRODUCE NEXT SECTION -->
-<div class="container-why">
-    <div class="container">
-      <h1><strong>See what other's have made</strong></h1>
-      <p style="font-weight: lighter">by using the ingredients of the week</p>
-    </div>
-</div>
+<div class="container">
+  <div class="title my-5" style="text-align: center ">
+    <h1><strong>See what other's have made</strong></h1>
+    <h4>by using the ingredients of the week</h4>
+  </div>
 
-<!-- CONTAINER FOR RECIPE CARDS OF THIS WEEK -->
+  <!-- CONTAINER FOR RECIPE CARDS OF THIS WEEK -->
 
-<div id="recipes" class="cards" style="margin-left: 75px;">
-
-  <% @recipes.take(8).each do |recipe| %>
-  <%= render 'shared/card_recipe_matt', recipe: recipe %>
-  <% end %>
-
+  <div id="recipes" class="grid-3 my-5">
+    <% @recipes.take(8).each do |recipe| %>
+    <%= render 'shared/card_recipe_home', recipe: recipe %>
+    <% end %>
+  </div>
 </div>

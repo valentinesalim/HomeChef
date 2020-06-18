@@ -1,16 +1,12 @@
 $dark-grey: #383F51;
 
 .navbar-container {
-  display: flex;
-  justify-content: space-between;
   background: white;
   position: sticky;
   top: 0;
   width: 100%;
   height: 80px;
   z-index : 10;
-  padding: 0 32px;
-  align-items: center;
   box-sizing: border-box;
 }
 
@@ -28,16 +24,14 @@ $dark-grey: #383F51;
 }
 
 .logo {
-  height: 90%;
-  img {
-    height: 100%;
-  }
+  height: 70px;
 }
 
 .links-container {
   height: 100%;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .links-container a {
