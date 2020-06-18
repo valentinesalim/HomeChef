@@ -19,7 +19,6 @@ class User < ApplicationRecord
   has_many :favorite_recipes
   has_many :favorites, through: :favorite_recipes, source: :recipe
 
-
   validates :first_name, :last_name, presence: true
 
   def avatar
@@ -29,4 +28,15 @@ class User < ApplicationRecord
       "defaultprofile_ra7j6p"
     end
   end
+
+  def favorites_of_this_week
+    weekly_ingredient_list = WeeklyIngredientList.this_week
+    favorites.where(weekly_ingredient_list: weekly_ingredient_list)
+  end
+
+  def favorites_before_this_week
+    weekly_ingredient_list = WeeklyIngredientList.this_week
+    favorites.where.not(weekly_ingredient_list: weekly_ingredient_list)
+  end
+
 end

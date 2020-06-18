@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     authorize @recipe
     @recipe.user = current_user
-    @weekly_ingredient_list = WeeklyIngredientList.find_by(date: Date.today.beginning_of_week)
+    @weekly_ingredient_list = WeeklyIngredientList.this_week
     @recipe.weekly_ingredient_list = @weekly_ingredient_list
 
     youtube_id = YoutubeID.from(@recipe.video)
@@ -67,22 +67,6 @@ class RecipesController < ApplicationController
     authorize @recipe
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
-  end
-
-  def favorite
-    type = params[:type]
-    if type == "favorite"
-      current_user.favorites << @recipe
-      redirect_to @recipe, notice: "You added #{@recipe.name} to your cookbook"
-
-    elsif type == "unfavorite"
-      current_user.favorites.delete(@recipe)
-      redirect_to @recipe, notice: "You removed #{@recipe.name} from your cookbook"
-
-    else
-      # Type missing, nothing happens
-      redirect_to @recipe, notice: 'Nothing happened.'
-    end
   end
 
   private

@@ -5,10 +5,6 @@ class FavoriteRecipePolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    owner_of?
-  end
-
   def new?
     create?
   end

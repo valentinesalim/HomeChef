@@ -7,10 +7,10 @@
 </div>
 
 <div id="recipes" class="cards" style="margin-left: 75px;">
-  <% if @recipe.created_this_week? %>
-    <% @recipes.each do |recipe| %>
+
+  <% @favorite_recipes_of_this_week.each do |recipe| %>
     <%= render 'shared/card_recipe_favorite', recipe: recipe %>
-    <% end %> <!-- ending recipe iteration -->
+  <% end %> <!-- ending recipe iteration -->
 
 </div>
 
@@ -23,9 +23,10 @@
   </dir>
 </div>
 
-  <% else %>
-    <% @recipes.each do |recipe| %>
-      <%= render 'shared/card_recipe_favorite', recipe: recipe %>
-    <% end %> <!-- ending recipe iteration -->
+<div id="recipes" class="cards" style="margin-left: 75px;">
 
-  <% end %> <!-- ending if (further above)/else (here above) conditions -->
+  <% @favorite_recipes_before_this_week.each do |recipe| %>
+    <%= render 'shared/card_recipe_favorite', recipe: recipe %>
+  <% end %> <!-- ending recipe iteration -->
+
+</div>

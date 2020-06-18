@@ -1,7 +1,7 @@
 <!-- BIG BANNER WITH PAGE INTRO -->
 <div class="banner-weekly" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url(<%= asset_path 'weekly-banner.jpg' %>);">
   <div class="container sub-banner" >
-    <% if @weekly_ingredient_list.created_this_week? %>
+    <% if @weekly_ingredient_list.this_week? %>
       <h1><strong>Menu of the week: </strong><i><%= @weekly_ingredient_list.menu_name %></i></h1>
       <p><%= @weekly_ingredient_list.date.at_beginning_of_week.strftime("%A %e %B %Y") %> - <%= (@weekly_ingredient_list.date.at_beginning_of_week + 6.days).strftime("%A %e %B %Y") %> </p>
     <% end %>
@@ -20,7 +20,7 @@
       </ul>
     <% end %>
   </div>
-  <%= link_to 'Buy Ingredient Set', new_order_path(recipe_id: @recipe.id), class: "btn btn-grey"%>
+  <%= link_to 'Buy Ingredient Set', new_order_path(weekly_ingredient_list_id: @weekly_ingredient_list.id), class: "btn btn-grey"%>
 </div>
 
 
@@ -36,9 +36,9 @@
 <!-- CONTAINER FOR RECIPE CARDS OF THIS WEEK -->
 
 <div id="recipes" class="cards" style="margin-left: 75px;">
-    <% if @recipe.created_this_week? %>
-      <% @recipes.take(8).each do |recipe| %>
-      <%= render 'shared/card_recipe_matt', recipe: recipe %>
-      <% end %>
-    <% end %>
+
+  <% @recipes.take(8).each do |recipe| %>
+  <%= render 'shared/card_recipe_matt', recipe: recipe %>
+  <% end %>
+
 </div>

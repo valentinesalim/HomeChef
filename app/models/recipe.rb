@@ -44,13 +44,9 @@ class Recipe < ApplicationRecord
     self.description.slice(0..60)
   end
 
-  def created_this_week?
-    date = Date.today
-    start_week = date.at_beginning_of_week
-    end_week = start_week + 6.days
-    # date_beginning_this_week = Date.today.beginning_of_week
-    # date_today= Date.today
-    Recipe.where(:created_at => start_week..end_week)
+  def favorite_by(user)
+    FavoriteRecipe.find_by(recipe: self, user: user)
   end
+
 
 end

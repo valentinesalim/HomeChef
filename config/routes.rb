@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :comments
     resources :ratings
-    resources :favorite_recipes
-    put :favorite, on: :member #NOTE: to add favorite_recipe_path(@recipe)
   end
+
+  resources :favorite_recipes, only: [ :index, :create, :destroy ]
 
   resources :orders, only: [:index, :new, :create, :show]
 
