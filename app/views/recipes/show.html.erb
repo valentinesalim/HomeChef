@@ -27,22 +27,17 @@
 
       </div>
     <div class="d-flex">
-      <button class="btn btn-success m-1"><%= link_to 'Order', new_order_path(recipe_id: @recipe.id)%></button>
-      <button class="btn btn-info m-1"><%= link_to 'Add to Cookbook', new_order_path(recipe_id: @recipe.id)%></button>
+      <button class="btn btn-success m-1"><%= link_to 'Order Ingredients', new_order_path(recipe_id: @recipe.id)%></button>
+      <% if favorite_recipe = @recipe.favorite_by(current_user) %>
+        <button class="btn btn-info m-1"><%= link_to 'Remove from Cookbook', favorite_recipe_path(favorite_recipe), method: :delete %></button>
+      <% else %>
+        <button class="btn btn-info m-1"><%= link_to 'Add to Cookbook', favorite_recipes_path(recipe_id: @recipe.id), method: :post %></button>
+      <% end %>
       <% if @done_recipe = @recipe.done_recipe_by(current_user) %>
-        <button class="btn btn-light m-1"><%= link_to 'Give review', new_done_recipe_rating_path(done_recipe_id: @done_recipe.id)%></button>
+        <button class="btn btn-light m-1"><%= link_to 'Review', new_done_recipe_rating_path(done_recipe_id: @done_recipe.id)%></button>
       <% else %>  
         <button class="btn btn-info m-1"><%= link_to 'Mark as done', done_recipes_path(recipe_id: @recipe.id), method: :post%></button>
       <% end %>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-

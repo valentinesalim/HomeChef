@@ -29,6 +29,9 @@ class Recipe < ApplicationRecord
   has_many :done_recipes, dependent: :destroy
   has_many :ratings, through: :done_recipes
 
+  has_many :favorite_recipes
+  has_many :favorited_by, through: :favorite_recipes, source: :user
+
   has_one_attached :photo
 
   validates :name, :description, :serving_time, :photo, :video, presence: true
@@ -41,16 +44,12 @@ class Recipe < ApplicationRecord
     self.description.slice(0..60)
   end
 
-  def created_this_week?
-    date = Date.today
-    start_week = date.at_beginning_of_week
-    end_week = start_week + 6.days
-    # date_beginning_this_week = Date.today.beginning_of_week
-    # date_today= Date.today
-    Recipe.where(:created_at => start_week..end_week)
+  def favorite_by(user)
+    FavoriteRecipe.find_by(recipe: self, user: user)
   end
 
   def done_recipe_by(user)
     DoneRecipe.find_by(user: user, recipe: self)
   end
+
 end
