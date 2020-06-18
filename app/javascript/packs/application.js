@@ -29,11 +29,13 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { categorisationFilter } from "./recipe_filter";
+import { portionAmountControl } from "./order-calculation";
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   categorisationFilter();
+  //portionAmountControl();
 });
 
 import { Application } from "stimulus"
