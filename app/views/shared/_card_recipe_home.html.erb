@@ -1,5 +1,5 @@
 <% @recipes.take(8).each do |recipe| %>
-  <div class="card child-row" style="width: 20rem; margin: 20px;">
+  <div class="card">
 
     <div class="card-recipe-img">
       <% if recipe.photo.attached? %>
@@ -14,7 +14,7 @@
       <p style="color: #8D9DA7; margin: 0px;"><%= recipe.category_list %></p>
       <i style="color: #8D9DA7;" class="far fa-clock"> <%= recipe.serving_time %> Minutes</i>
       <%= cl_image_tag recipe.user.avatar, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
-      
+
     </div>
 
   </div>

@@ -1,1 +1,49 @@
-// Specific CSS for your home-page
+
+
+
+
+.grid-2{
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ grid-gap: 32px;
+
+}
+
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 32px;
+}
+
+
+.start-cooking {
+    text-align: center;
+    background-color: #e4e3e3;
+    padding: 40px 0;
+}
+
+
+
+.start-cooking .button-wrapper {
+    margin-top: 13px;
+    text-align: center;
+}
+
+.start-cooking .title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #383F51;
+    line-height: 1.3;
+    font-size: 40px;
+}
+
+.start-cooking .sub-title {
+    color: #6c748f;
+    font-size: 18px;
+    line-height: 1.43;
+    max-width: 375px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
