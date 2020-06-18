@@ -24,7 +24,7 @@
     <!-- add 6 recipe cards + 4 chef examples -->
     <!--get code from recipes.index.html  -->
   <div class="container-why">
-    <dir class="container sub-banner">
+    <dir class="container">
       <h1><strong>Our picks</strong></h1>
       <p style="color: #8D9DA7; font-weight: lighter">Delicious recipe we chose for you</p>
     </dir>
@@ -39,12 +39,12 @@
 
 
   <div class="container-why">
-    <div class="container sub-banner">
+    <div class="container">
       <h1><strong>Meet our Star Chefs!</strong></h1>
     </div>
   </div>
 
-  <div id="home_container" class="container" style="margin-bottom: 100px; padding: 50px;">
+  <div id="home_container" class="container" style="padding: 50px;">
     <div class="cards">
       <% 9.times do %>
         <%= render "shared/card_user", show_button: false  %>
@@ -52,13 +52,13 @@
     </div>
   </div>
 
-  <div class="start-cooking" style="margin-bottom: 100px;">
+  <div class="start-cooking">
     <img src="https://jchef.com/wp-content/themes/jchef/images/home_start1.png" alt="" class="decoration1">
     <img src="https://jchef.com/wp-content/themes/jchef/images/home_start2.png" alt="" class="decoration2">
     <h2 class="title">Start Cooking</h2>
     <h2 class="sub-title">We'll take care of everything you need to cook.</h2>
     <div class="button-wrapper">
-      <a href="#" style="background-color: #383F51; color: white; border-radius: 10px;"class="btn">Sign Up</a>
+      <button class="btn btn-grey"><%= link_to 'Start now', WeeklyIngredientList.find_by_id(1) %></button>
     </div>
  </div>
 </div>

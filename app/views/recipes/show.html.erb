@@ -1,38 +1,45 @@
-<div class="container">
+<div class="container" style="padding-top: 20px;">
   <iframe id="ytplayer" class="recipe_video" type="text/html" src="<%= @recipe.video %>"
   frameborder="0" allowfullscreen>
   </iframe>
 </div>
 
-<div class="container d-flex">
-  <div style="margin-left: 20px;">
-    <h1><b><%= @recipe.name %></b></h1>
-    <p><%= @recipe.category_list %></p>
-    <h3>Description </h3>
-    <p><%= @recipe.description %><p>
-    <div class="center">
-      <%= render "shared/card_user_profile_on_recipe" %>
-    </div>
-
-  </div>
-  <div class="recipe-info-card my-3">
-    <h3><strong>Recipe Info</strong></h3>
-    <p><strong>Serving Time: </strong><%= @recipe.serving_time %> minutes</p>
-    <p><strong>Level: </strong><%= @recipe.level_list %></p>
-    <p><strong>Ingredients: </strong>
-      <div style="mt-1"><% @weekly_ingredients.each do |wi| %>
-        <li><%= wi.ingredient.name %></li>
-    </p>
-      <% end %>
-
+<div class="recipe-info2-card">
+  <div class="container d-flex">
+    <div style="margin-left: 20px; max-width: 500px;">
+      <div class="d-flex">
+        <h1><b><%= @recipe.name %></b></h1>
+        <% if user_signed_in? && policy(@recipe).edit? %>
+          <%= link_to 'edit', edit_recipe_path(@recipe), class: "btn btn-edit" %>
+        <% end %>
       </div>
-    <div class="d-flex">
-      <button class="btn btn-success m-1"><%= link_to 'Order', new_order_path(recipe_id: @recipe.id)%></button>
-      <button class="btn btn-info m-1"><%= link_to 'Add to Cookbook', new_order_path(recipe_id: @recipe.id)%></button>
+      <p style="margin-top: -10px; font-size: 20px;"><%= @recipe.category_list %></p>
+      <h3 style="font-size: 25px;">Description </h3>
+      <p><%= @recipe.description %><p>
+      <div class="center">
+        <%= render "shared/card_user_profile_on_recipe" %>
+      </div>
+
+    </div>
+    <div class="recipe-info-card">
+      <h3><strong>Recipe Info</strong></h3>
+      <p><strong>Serving Time: </strong><%= @recipe.serving_time %> minutes</p>
+      <p><strong>Level: </strong><%= @recipe.level_list %></p>
+      <p><strong>Ingredients: </strong>
+        <div style="mt-1"><% @weekly_ingredients.each do |wi| %>
+          <li><%= wi.ingredient.name %> (<%=wi.amount%> <%=wi.ingredient.unit%>)</li>
+
+      </p>
+        <% end %>
+
+        </div>
+      <div class="d-flex">
+        <button class="btn btn-success m-1" style="font-weight: bold;"><%= link_to 'Order', new_order_path(recipe_id: @recipe.id)%></button>
+        <button class="btn btn-info m-1" style="font-weight: bold;><%= link_to 'Add to Cookbook', new_order_path(recipe_id: @recipe.id)%></button>
+      </div>
     </div>
   </div>
 </div>
-
 
 
 
