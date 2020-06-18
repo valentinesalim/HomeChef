@@ -6,11 +6,11 @@
       <% order.weekly_ingredients.each do | wi |%>
         <p>
           <%= wi.ingredient.name %>, <%= wi.amount %> <%= wi.ingredient.unit %>
-          <%= order.total_order_price %>
         </p>
       <% end %>
+       <%= order.delivery_location %>
+      <%= order.total_order_price || "9.99$" %>
     </p>
-
   </div>
 </div>
 

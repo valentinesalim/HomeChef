@@ -22,7 +22,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
+    owner_of?
   end
 
   def update?
@@ -31,5 +31,10 @@ class UserPolicy < ApplicationPolicy
 
   def destroy?
     true
+  end
+
+  private
+  def owner_of? #if the user is owner of that book
+    record == user
   end
 end
