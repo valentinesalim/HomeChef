@@ -4,6 +4,7 @@
 
 <div class="container">
   <h2>My Uploads </h2>
+  <hr>
   <div class="grid-3 my-3">
     <% @recipes_user.each do | recipe | %>
     <%=  render "shared/card_recipe_matt", recipe: recipe %>
@@ -13,6 +14,7 @@
 
 <div class="container">
   <h2>My Orders </h2>
+  <hr>
   <div class="grid-3 my-3">
     <% @orders_user.each do | order | %>
       <%= render partial: "shared/ingredients_order_card", locals: { order: order } %>

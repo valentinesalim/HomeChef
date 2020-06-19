@@ -7,6 +7,7 @@
 </div>
 
 <div id="recipe_index" class="container d-flex my-5">
+  
   <div class="recipe-index-card">
     <%= simple_form_for :filter, html: {id:"filter-recipes", "data-controller":"index-form"}, url: recipes_path, method: "GET", remote: true do |f| %>
           <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes, onClick: "test"%>

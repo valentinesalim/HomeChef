@@ -8,7 +8,7 @@
   </div>
 
   <div class="card-body">
-    <h4 class="card-title"><strong><%= recipe.name %></strong></h4>
+    <h4 style="color: #323D51"class="card-title"><strong><%= recipe.name %></strong></h4>
     <p style="color: #8D9DA7; margin: 0px;"><%= recipe.category_list %></p>
     <i style="color: #8D9DA7;" class="far fa-clock"> <%= recipe.serving_time %> Minutes</i>
     <%= cl_image_tag recipe.user.avatar, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
