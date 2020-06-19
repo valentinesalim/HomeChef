@@ -3,5 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @recipes = Recipe.all.order(name: :asc)
+    @users = User.all
   end
 end

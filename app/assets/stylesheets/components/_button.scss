@@ -2,6 +2,18 @@
     background-color: hsl(200, 4%, 30%);
     color: white;
     border-radius: 10px;
+
+
+}
+
+
+.btn-navbar {
+    border-radius: 10px;
+    background-color: #9A9DA7
+}
+
+.btn-navbar:hover {
+    background-color: #4a4e50;
 }
 
 .btn-edit {
@@ -47,8 +59,4 @@
     background-color: #57666d;
     color: white;
 
-}
-
-.btn-navbar {
-    background-color: #F15C60;
 }
