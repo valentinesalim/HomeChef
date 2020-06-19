@@ -41,8 +41,8 @@
 <div class="container mb-5">
   <h1 class="my-5"><strong>Meet our Star Chefs!</strong></h1>
   <div class="grid-3">
-    <% 9.times do %>
-      <%= render "shared/card_user", show_button: false  %>
+    <% @users.take(9).each do |user| %>
+      <%= render "shared/card_user", user: user  %>
     <% end %>
   </div>
 </div>

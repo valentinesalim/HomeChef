@@ -1,15 +1,17 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class=""><%= order.weekly_ingredient_list.menu_name %></h5>
+    <h5 style="color: #4a4e50"><b><%= order.weekly_ingredient_list.menu_name %></b></h5>
     <h6 class="card-subtitle mb-2 text-muted">Ordered on: <%= order.created_at.strftime("%a, %e, %B, %Y") %></h6>
+    <h6 class="card-subtitle mb-2 text-muted">Will be deliver to: <%= order.delivery_location %></h6>
+    <hr>
     <p class="card-text">
       <% order.weekly_ingredients.each do | wi |%>
         <p>
           <%= wi.ingredient.name %>, <%= wi.amount %> <%= wi.ingredient.unit %>
         </p>
       <% end %>
-      <%= order.delivery_location %>
-      <%= order.total_order_price || "9.99RMB" %>
+      <hr>
+      <h5 style="color: #4a4e50"><b>Total price:<%= order.total_order_price || "9.99RMB" %></b></h5>
     </p>
   </div>
 </div>

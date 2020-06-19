@@ -1,3 +1,9 @@
-<div class="card-category" style="margin: 5px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=325&q=80)">
-  Rodrigo
+<div class="card">
+  <div class="card-recipe-img">
+    <% if user.photo.attached? %>
+      <%= link_to user_path(user) do %>
+        <%= cl_image_tag user.photo.key , class:"card-img-top card-recipe-img"%>
+      <% end %>
+    <% end %>
+  </div>
 </div>
