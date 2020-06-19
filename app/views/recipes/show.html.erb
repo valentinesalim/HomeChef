@@ -6,7 +6,7 @@
 
 
 <div class="container d-flex justify-content-between">
-  <div style="width: 60%;">
+  <div style="width: 70%;">
     <div class="show-info-container my-3">
       <h1><b><%= @recipe.name %></b>
       <% if user_signed_in? && policy(@recipe).edit? %>
@@ -20,7 +20,7 @@
       <%= render "shared/card_user_profile_on_recipe" %>
     </div>
   </div>
-  <div class="recipe-info-card my-3" style="width: 35%">
+  <div class="recipe-info-card my-3" style="width: 28%">
     <h3><strong>Recipe Info</strong></h3>
     <p><strong>Serving Time: </strong><%= @recipe.serving_time %> minutes</p>
     <p><strong>Level: </strong><%= @recipe.level_list %></p>
