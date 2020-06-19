@@ -19,4 +19,5 @@ Rails.application.routes.draw do
     resources :ratings, only: [:create, :new]
   end
 
+  resources :teams, only: [:index]
 end
