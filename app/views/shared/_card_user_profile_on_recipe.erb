@@ -2,7 +2,7 @@
   <img class="avatar-profile-on-recipeshow" src="<%= @user.photo.attached? ? (cl_image_path @user.photo.key) : (image_path "defaultprofile.png")%>" >
   <div class="info-container">
     <h4><strong><%= @user.first_name.capitalize + " " + @user.last_name.capitalize %></strong></h4>
-    <p><strong> Biography:   </strong><%= @user.biography.present? ? (@user.biography.slice(0..60)) : ("Passionate chef who loves to share his creations and enable others to cook") %></p>
+    <p><strong> Biography:   </strong><%= @user.biography.present? ? (@user.biography.slice(0..60)) : ("Master chef with experience working in restaurants across the world, passionate about creating and sharing the best recipes from different countries.") %></p>
   </div>
 </div>
 
