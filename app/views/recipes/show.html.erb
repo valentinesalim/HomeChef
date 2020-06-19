@@ -37,10 +37,12 @@
       <% else %>
         <button class="btn btn-info m-1 btn-sm"><%= link_to 'Add to Cookbook', favorite_recipes_path(recipe_id: @recipe.id), method: :post %></button>
       <% end %>
-      <% if @done_recipe = @recipe.done_recipe_by(current_user) %>
-        <button class="btn btn-info m-1 btn-sm"><%= link_to 'Review', new_done_recipe_rating_path(done_recipe_id: @done_recipe.id)%></button>
-      <% else %>  
-        <button class="btn btn-info m-1 btn-sm"><%= link_to 'Mark as done', done_recipes_path(recipe_id: @recipe.id), method: :post%></button>
+      <% if Rails.env.development? %>
+        <% if @done_recipe = @recipe.done_recipe_by(current_user) %>
+          <button class="btn btn-info m-1 btn-sm"><%= link_to 'Review', new_done_recipe_rating_path(done_recipe_id: @done_recipe.id)%></button>
+        <% else %>  
+          <button class="btn btn-info m-1 btn-sm"><%= link_to 'Mark as done', done_recipes_path(recipe_id: @recipe.id), method: :post%></button>
+        <% end %>
       <% end %>
     </div>
   </div>
