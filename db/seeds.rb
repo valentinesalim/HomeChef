@@ -115,7 +115,7 @@ test_user.photo.attach(io: file, filename: 'avatar.png', content_type: 'image/pn
 test_user.save!
 puts "created new test user"
 
-puts "Seed completed (if user and recipes commented out)"
+puts "Seed completed (without user and recipes)"
 
 
 # BELOW: SEED CODE USING FAKER GEM TO CREATE RECORDS - ATTN: DATA (e.g. Recipe name and image) NOT NECCESSARILY MATCHING
@@ -136,44 +136,44 @@ puts "Seed completed (if user and recipes commented out)"
 
 # USER
 # ------------
-puts "-> now creating new users incl. their own recipes"
-# ------------
+# puts "-> now creating new users incl. their own recipes"
+# # ------------
 
-5.times do
-  u = User.new(email: Faker::Internet.email,
-                    password: "123456",
-                    first_name: Faker::Name.first_name,
-                    last_name: Faker::Name.last_name,
-                    biography: Faker::Restaurant.description,
-                    address: Faker::Address.full_address
-                  )
-  file = URI.open('https://images.unsplash.com/photo-1588442085302-4b4536373a03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')
-  u.photo.attach(io: file, filename: 'avatar.png', content_type: 'image/png')
-  u.save!
-  puts "created new user"
+# 5.times do
+#   u = User.new(email: Faker::Internet.email,
+#                     password: "123456",
+#                     first_name: Faker::Name.first_name,
+#                     last_name: Faker::Name.last_name,
+#                     biography: Faker::Restaurant.description,
+#                     address: Faker::Address.full_address
+#                   )
+#   file = URI.open('https://images.unsplash.com/photo-1588442085302-4b4536373a03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')
+#   u.photo.attach(io: file, filename: 'avatar.png', content_type: 'image/png')
+#   u.save!
+#   puts "created new user"
 
-  categories = ["Meat", "Veggie", "Pasta", "Salad", "Soup", "Seafood", "Snack", "Vegetables", "Sweet/Dessert", "Bread and Pastries"]
-  levels = ["Easy", "Medium", "Difficult", "Expert"]
+#   categories = ["Meat", "Veggie", "Pasta", "Salad", "Soup", "Seafood", "Snack", "Vegetables", "Sweet/Dessert", "Bread and Pastries"]
+#   levels = ["Easy", "Medium", "Difficult", "Expert"]
 
-  #RECIPE CONNECTED TO USER ABOVE
-  2.times do
-    r = Recipe.new(name: Faker::Food.dish,
-                    # category: Recipe::CATEGORIES.sample,
-                    category_list: categories.sample,
-                    description: Faker::Food.description,
-                    serving_time: rand(10..90),
-                    # level: Recipe::LEVELS.sample,
-                    level_list: levels.sample,
-                    published: true,
-                    weekly_ingredient_list_id: wil.id,
-                    user_id: u.id,
-                    video: "https://www.youtube.com/embed/Z_GcsR7Q99s"
-                  )
-    file = URI.open('https://source.unsplash.com/featured/?recipe')
-    r.photo.attach(io: file, filename: 'recipe.png', content_type: 'image/png')
-    r.save!
-  end
-  puts "created recipe(s) connected to last created user"
-end
+#   #RECIPE CONNECTED TO USER ABOVE
+#   2.times do
+#     r = Recipe.new(name: Faker::Food.dish,
+#                     # category: Recipe::CATEGORIES.sample,
+#                     category_list: categories.sample,
+#                     description: Faker::Food.description,
+#                     serving_time: rand(10..90),
+#                     # level: Recipe::LEVELS.sample,
+#                     level_list: levels.sample,
+#                     published: true,
+#                     weekly_ingredient_list_id: wil.id,
+#                     user_id: u.id,
+#                     video: "https://www.youtube.com/embed/Z_GcsR7Q99s"
+#                   )
+#     file = URI.open('https://source.unsplash.com/featured/?recipe')
+#     r.photo.attach(io: file, filename: 'recipe.png', content_type: 'image/png')
+#     r.save!
+#   end
+#   puts "created recipe(s) connected to last created user"
+# end
 
-puts "Finished creating all users that each have recipes --> SEED COMPLETED"
+# puts "Finished creating all users that each have recipes --> SEED COMPLETED"
