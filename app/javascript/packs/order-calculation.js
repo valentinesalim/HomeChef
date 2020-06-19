@@ -1,12 +1,12 @@
-let hiddenTotalPrice = document.getElementById("hidden-order-total-price");
-let hiddenAmount = document.getElementById("hidden_amount_portion");
+let hiddenTotalPrice;
+let hiddenAmount;
 
-let amount = document.getElementById("input_amount_portion");
-let portionPrice = document.getElementById('price_per_portion');
-let visibleTotalPrice = document.getElementById('total-price');
+let amount;
+let portionPrice;
+let visibleTotalPrice;
 
-let minus = document.getElementById('minus-btn');
-let plus = document.getElementById('plus-btn');
+let minus;
+let plus;
 
 const orderTotalCalculation = () => {
   let amountNum = Number.parseInt(amount.innerText);
@@ -18,6 +18,16 @@ const orderTotalCalculation = () => {
 }
 
 const portionAmountControl = () => {
+  console.log("Portion amount control mounted")
+  hiddenTotalPrice = document.getElementById("hidden-order-total-price");
+  hiddenAmount = document.getElementById("hidden_amount_portion");
+  amount = document.getElementById("input_amount_portion");
+  portionPrice = document.getElementById('price_per_portion');
+  visibleTotalPrice = document.getElementById('total-price');
+  minus = document.getElementById('minus-btn');
+  plus = document.getElementById('plus-btn');
+  console.log("Minus", minus)
+  console.log("Plus", plus)
   minus.addEventListener('click', (e) => {
     let value = Number.parseInt(amount.innerText)
     if (value > 0) {
