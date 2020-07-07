@@ -16,7 +16,7 @@ Originality:
 We've seen so many cooking recipe app, but you want a different experience , you want to be able to connect deeper with the chef.
 
 Slides url:
-https://drive.google.com/file/d/1m-j_Z8JP3j_YSJwXJxxYPJiv4yTFdli5/view?usp=sharing
+https://docs.google.com/presentation/d/1Cab0ryliQ0u8CYRp4-8Eaczou5QKrF6i8U2YM0hZmTM/edit?usp=sharing
 
 Website:
 homechef.site
